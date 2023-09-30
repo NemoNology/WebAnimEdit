@@ -1,4 +1,5 @@
 # Theme 1: HTML5 Animation online-designer
+#Theme 2.0: онлайн редактор для мультипликации средствами html5
 
 ## Description 
 HTML5-animation on:
