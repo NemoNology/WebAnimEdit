@@ -10,7 +10,6 @@ HTML5-animation on:
 ## My app features:
 - **Basic:**
   - Online-designer
-  - Ease to use (Good UI and UX)
   - Free and OpenSource
   - Export as HTML with CSS animation
   - One project file type - JSON
