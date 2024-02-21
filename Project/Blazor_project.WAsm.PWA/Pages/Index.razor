@@ -1,38 +1,33 @@
 ﻿@page "/"
 
-
-
-<body class="bg-light flex-column">
-    @* Menu bar *@
-    <div class="p-2 bg-primary d-flex flex-row">
-        <div class="dropdown open">
-            <button class="btn btn-light dropdown-toggle" type="button" id="projectDropdown" data-bs-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                Проект
-            </button>
-            <div class="dropdown-menu" aria-labelledby="projectDropdown">
-                <button class="dropdown-item" href="#">Новый</button>
-                <button class="dropdown-item" href="#">Открыть</button>
-                <div class="dropdown-divider" />
-                <button class="dropdown-item" href="#">Сохранить</button>
-                <button class="dropdown-item" href="#">Сохранить как..</button>
-            </div>
+@* Menu bar *@
+<nav class="bg-primary p-2">
+    <div class="dropdown open">
+        <button class="btn btn-light dropdown-toggle" type="button" id="projectDropdown" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Проект
+        </button>
+        <div class="dropdown-menu" aria-labelledby="projectDropdown">
+            <button class="dropdown-item" href="#">Новый</button>
+            <button class="dropdown-item" href="#">Открыть</button>
+            <div class="dropdown-divider" />
+            <button class="dropdown-item" href="#">Сохранить</button>
+            <button class="dropdown-item" href="#">Сохранить как..</button>
         </div>
     </div>
+</nav>
 
-    @* Not nav bar *@
-    <div class="d-flex flex-row flex-fill bg-secondary">
-        @* Project tree - 1\6 width *@
-        <div class="bg-info d-flex flex-grow-1">
-            Test
-        </div>
-        @* Work place - 4\6 width *@
-        <div class="bg-secondary d-flex" style="flex-grow: 4;">
-            Test
-        </div>
-        @* Properties - 1\6 width *@
-        <div class="bg-danger d-flex flex-grow-1">
-            Test
-        </div>
+<main>
+    @* Project tree - 1\6 width *@
+    <div class="bg-info flex-grow-1">
+
     </div>
-</body>
+    @* Work place - 4\6 width *@
+    <div class="bg-secondary" style="flex-grow: 4;">
+
+    </div>
+    @* Properties - 1\6 width *@
+    <div class="bg-danger flex-grow-1">
+
+    </div>
+</main>

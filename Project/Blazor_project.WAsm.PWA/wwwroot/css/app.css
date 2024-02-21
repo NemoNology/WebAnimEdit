@@ -1,11 +1,27 @@
 html,
+body,
+div,
+main,
+nav {
+    display: flex;
+}
+
+html,
 body {
+    justify-content: center;
+    align-items: center;
     height: 100%;
+    width: 100%;
+}
+
+nav {
+    align-self: flex-start;
+    width: 100%;
 }
 
 main {
-    display: flex;
-    flex-direction: column;
+    align-self: stretch;
+    height: inherit;
 }
 
 h1:focus {
