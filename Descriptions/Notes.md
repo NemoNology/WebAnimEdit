@@ -1,14 +1,17 @@
 # Theme 1: HTML5 Animation online-designer
+
 # Theme 2.0: Онлайн редактор для мультипликации на основе html5
 
-## Description 
+## Description
+
 HTML5-animation on:
 - CSS
 - JavaScript
 - *XML?*
 - *CVS?*
 
-## My app features:
+## My app features
+
 - **Basic:**
   - Online-designer
   - Free and OpenSource
@@ -32,34 +35,13 @@ HTML5-animation on:
   - Templates as local package or package from server (that does not need to download)
 
 
-## Expected platform/framework for development: 
+## Expected platform/framework for development
+
 - **Main:** ASP.NET Core
 - **Sub:**
   - Razor pages
   - Blazor WAsm
-  
-## Interfaces concepts:
-- Animated item:
-  - Fields & properties:
-    - ID
-    - Position
-    - Animation
-  - Types:
-    - Image
-    - Text
-    - Shape
-    - Items group
-- Animation:
-  - Fields & properties:
-    - ID
-    - Key frames (List of key frames)
-- Key frame:
-  - Fields & properties:
-    - Time position/place
-    - Transform value
-    - Scale value
-    - Rotate value
 
-## Useful links:
+## Useful links
+
 - [Overview of ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-7.0)
-- 
