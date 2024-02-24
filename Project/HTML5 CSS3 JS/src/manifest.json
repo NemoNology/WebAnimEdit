@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json.schemastore.org/web-manifest",
+  "short_name": "РРМ?",
+  "name": "РосРедМульт?",
+  "description": "Прогрессивное веб-приложения для редактирования мультипликации на основе HTML5, CSS3 и JavaScript.",
+  "icons": [
+    {
+      "src": "./Assets/Icons/app_icon_44x44.png",
+      "sizes": "44x44",
+      "type": "image/png"
+    },
+    {
+      "src": "./Assets/Icons/app_icon_71x71.png",
+      "sizes": "71x71",
+      "type": "image/png"
+    },
+    {
+      "src": "./Assets/Icons/app_icon_150x150.png",
+      "sizes": "150x150",
+      "type": "image/png"
+    }
+  ],
+  "display": "standalone",
+  "orientation": "landscape",
+  "theme_color": "#1d3b8f",
+  "background_color": "#f4fbff",
+  "start_url": "./../index.html"
+}
