@@ -41,13 +41,13 @@ body {
     height: 100%;
 }
 
-body {
+/* body {
     margin: 0%;
     background-color: var(--color-light);
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+} */
 
 nav {
     padding: 8px;
@@ -119,14 +119,6 @@ button:active {
     position: absolute;
     right: 0.75rem;
     top: 0.5rem;
-}
-
-.w-fc {
-    width: fit-content;
-}
-
-.h-fc {
-    height: fit-content;
 }
 
 .blazor-error-boundary {

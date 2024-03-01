@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor_project.WAsm.PWA", "Blazor_project.WAsm.PWA.csproj", "{B51D2F36-C4A2-4455-A646-52EB2E2EF087}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor_pwa", "Blazor_pwa.csproj", "{9DE57DF1-F208-4CE8-8951-16CD9E60711C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B51D2F36-C4A2-4455-A646-52EB2E2EF087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B51D2F36-C4A2-4455-A646-52EB2E2EF087}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B51D2F36-C4A2-4455-A646-52EB2E2EF087}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B51D2F36-C4A2-4455-A646-52EB2E2EF087}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DE57DF1-F208-4CE8-8951-16CD9E60711C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DE57DF1-F208-4CE8-8951-16CD9E60711C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DE57DF1-F208-4CE8-8951-16CD9E60711C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DE57DF1-F208-4CE8-8951-16CD9E60711C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C695C0FC-F562-4495-B80C-68C58557ECDD}
+		SolutionGuid = {B3667709-4D6C-40AB-9703-CC17F8BAB910}
 	EndGlobalSection
 EndGlobal
