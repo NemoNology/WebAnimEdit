@@ -1,14 +1,14 @@
 {
-  "name": "Blazor_project.WAsm.PWA",
-  "short_name": "Blazor_project.WAsm.PWA",
+  "name": "Нет пока имени",
+  "short_name": "Нет пока имени",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#03173d",
+  "background_color": "#f4fbff",
+  "theme_color": "#ea4562",
   "prefer_related_applications": false,
   "icons": [
     {
-      "src": "icon-512.png",
+      "src": "/Sources/Assets/Images/icon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
