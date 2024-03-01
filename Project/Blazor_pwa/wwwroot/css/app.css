@@ -1,12 +1,14 @@
 :root {
-    --color-light: #f4fbff;
-    --color-dark: #301f3d;
-    --color-primary: #1d3b8f;
-    --color-secondary: #ea4562;
+    --color-light: #fbf9fa;
+    --color-dark: #242124;
+    --color-primary: #f6b79b;
+    --color-secondary: #ffe7d4;
+    --color-accent: #dfe0df;
 }
 
 * {
-    color: var(--color-light);
+    color: var(--color-dark);
+    background-color: var(--color-light);
     font-family: "Open Sans", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -29,25 +31,25 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --color-light: #242523;
-        --color-dark: #f3f5e6;
-        --color-primary: #63cfdc;
-        --color-secondary: #ea4562;
+        /* TODO: change colors */
+        --color-light: #242124;
+        --color-dark: #fff6f0;
+        --color-primary: #663322;
+        --color-secondary: #312524;
+        --color-accent: #00557e;
     }
 }
 
 html,
 body {
     height: 100%;
+    margin: 0%;
 }
 
-/* body {
-    margin: 0%;
-    background-color: var(--color-light);
+body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-} */
+}
 
 nav {
     padding: 8px;
@@ -56,12 +58,11 @@ nav {
 
 nav>*,
 div>* {
-    width: fit-content;
+    width: auto;
 }
 
 main {
     display: flex;
-    flex-direction: column;
     width: 100%;
     height: 100%;
 }
@@ -69,17 +70,16 @@ main {
 button {
     border-radius: 8px;
     padding: 8px;
-    background-color: var(--color-light);
-    color: var(--color-dark);
     font-size: medium;
+    border: 1px solid transparent;
 }
 
 button:hover {
-    filter: brightness(.95);
+    border-color: var(--color-dark);
 }
 
 button:active {
-    filter: brightness(1.05);
+    background-color: var(--color-accent);
 }
 
 .bg-primary {
@@ -102,10 +102,14 @@ button:active {
     color: var(--color-dark)
 }
 
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
 #blazor-error-ui {
-    background: lightyellow;
+    background: var(--color-light);
     bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 -1px 2px var(--color-dark);
     display: none;
     left: 0;
     padding: 0.6rem 1.25rem 0.7rem 1.25rem;
@@ -128,5 +132,5 @@ button:active {
 }
 
 .blazor-error-boundary::after {
-    content: "An error has occurred."
+    content: "Произошла непредвиденная ошибка."
 }
