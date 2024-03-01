@@ -1,33 +1,16 @@
 ﻿@page "/"
 
-@* Menu bar *@
-<nav class="bg-primary p-2">
-    <div class="dropdown open">
-        <button class="btn btn-light dropdown-toggle" type="button" id="projectDropdown" data-bs-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
+<nav>
+    <div>
+        <button type="button">
             Проект
         </button>
-        <div class="dropdown-menu" aria-labelledby="projectDropdown">
-            <button class="dropdown-item" href="#">Новый</button>
-            <button class="dropdown-item" href="#">Открыть</button>
-            <div class="dropdown-divider" />
-            <button class="dropdown-item" href="#">Сохранить</button>
-            <button class="dropdown-item" href="#">Сохранить как..</button>
+        <div>
+            <button href="#">Новый</button>
+            <button href="#">Открыть</button>
+            <button href="#">Test</button>
+            <button href="#">Сохранить</button>
+            <button href="#">Сохранить как..</button>
         </div>
     </div>
 </nav>
-
-<main>
-    @* Project tree - 1\6 width *@
-    <div class="bg-info flex-grow-1">
-
-    </div>
-    @* Work place - 4\6 width *@
-    <div class="bg-secondary" style="flex-grow: 4;">
-
-    </div>
-    @* Properties - 1\6 width *@
-    <div class="bg-danger flex-grow-1">
-
-    </div>
-</main>
