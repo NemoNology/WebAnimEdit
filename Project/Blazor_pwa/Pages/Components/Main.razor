@@ -1,0 +1,18 @@
+@namespace Blazor_pwa.Pages.Components
+
+<style>
+    main {
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<main>
+    @ChildContent
+</main>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

@@ -1,0 +1,18 @@
+@namespace Blazor_pwa.Pages.Components
+
+<style>
+    nav {
+        width: 100%;
+        padding: 8px;
+        background-color: var(--color-primary);
+    }
+</style>
+
+<nav>
+    @ChildContent
+</nav>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

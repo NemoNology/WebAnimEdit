@@ -1,15 +1,14 @@
 ﻿@page "/"
 
-<nav>
-    <div>
-        Проект
-        <button type="button">Новый</button>
-        <button type="button">Открыть</button>
-        <button type="button">Сохранить</button>
-        <button type="button">Сохранить как </button>
-    </div>
-</nav>
-<main>
+<Nav>
+    <Dropdown Header="Проект">
+        <Button>Новый</Button>
+        <Button>Открыть</Button>
+        <Button>Сохранить</Button>
+        <Button>Сохранить как </Button>
+    </Dropdown>
+</Nav>
+<Main>
     <div class="flex-grow-1 bg-secondary">
         Test - Тестик
     </div>
@@ -19,4 +18,4 @@
     <div class="flex-grow-1 bg-secondary">
         Test - Тестик
     </div>
-</main>
+</Main>
