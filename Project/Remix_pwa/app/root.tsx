@@ -21,7 +21,7 @@ export const links: LinksFunction = () => [
 export default function App() {
   useSWEffect();
   return (
-    <html lang="en" className="h-100 w-100">
+    <html lang="en" className="h-full">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,7 +29,7 @@ export default function App() {
         <link rel="manifest" href="/manifest.webmanifest" />
         <Links />
       </head>
-      <body className="h-100 w-100">
+      <body className="h-full">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
