@@ -49,12 +49,29 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
 }
 
 div,
 div>* {
     width: max-content;
+}
+
+button {
+    border-radius: 8px;
+    padding: 8px;
+    font-size: medium;
+    border: 1px solid transparent;
+    background-color: var(--color-light);
+    cursor: pointer;
+}
+
+button:hover {
+    border-color: var(--color-dark);
+}
+
+button:active {
+    background-color: var(--color-accent);
 }
 
 .bg-primary {
@@ -80,6 +97,10 @@ div>* {
 
 .color-dark {
     color: var(--color-dark);
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
 }
 
 #blazor-error-ui {
