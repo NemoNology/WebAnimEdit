@@ -1,25 +1,23 @@
 import { FC, ReactNode } from "react";
-import {
-    TEDropdown,
-    TEDropdownToggle,
-    TERipple,
-} from "tw-elements-react";
+import Button from "./Button";
 
-export type DropdownProps = {
+export type MyDropdownProps = {
     Header: string,
+    ID: string,
     DropdownMenu: ReactNode,
 };
 
-const Dropdown: FC<DropdownProps> = ({ Header, DropdownMenu }) => {
+const Dropdown: FC<MyDropdownProps> = ({ Header, ID, DropdownMenu }) => {
+    const fullID: string = "dd_tb_" + ID;
     return (
-        <TEDropdown>
-            <TERipple>
-                <TEDropdownToggle>
-                    {Header}
-                </TEDropdownToggle>
-            </TERipple>
-            {DropdownMenu}
-        </TEDropdown>
+        <>
+            <Button ID={fullID} Header={Header} DataDropdownToggle="dropdown" />
+            <div id="dropdown" className="hidden">
+                <ul aria-labelledby={fullID}>
+                    {DropdownMenu}
+                </ul>
+            </div>
+        </>
     );
 };
 
