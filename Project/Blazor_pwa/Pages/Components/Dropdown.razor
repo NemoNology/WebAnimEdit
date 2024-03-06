@@ -1,28 +1,33 @@
 @namespace Blazor_pwa.Pages.Components
 
 <style>
-    .dropdown>ul.dropdown-menu>li.dropdown-item {
-        display: flex;
+    .dropdown-menu {
+        position: absolute;
+        display: none;
         flex-direction: column;
+        background-color: var(--color-light);
+        border-radius: 4px;
+        padding: 8px;
     }
 
-    .dropdown>ul.dropdown-menu>li.dropdown-item:hover,
-    .dropdown>ul.dropdown-menu>li.dropdown-item:active {
-        background-color: transparent;
+    .dropdown-menu.shown {
+        display: flex;
     }
 </style>
 
 <div class="dropdown">
-    <Button class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">@Header</Button>
-    <ul class="dropdown-menu">
-        <li class="dropdown-item">@ChildContent</li>
-    </ul>
+    <button type="button" id="@FullID">@Header</button>
+    <div class="dropdown-menu " aria-labelledby="@FullID">
+        @ChildContent
+    </div>
 </div>
 
 @code {
     [Parameter]
     public string Header { get; set; } = "";
-
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+    [Parameter]
+    public required string ID { get; set; }
+    public string FullID => $"dropdown-{ID}";
 }
