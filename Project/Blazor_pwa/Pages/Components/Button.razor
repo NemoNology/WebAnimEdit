@@ -1,29 +1,13 @@
 @namespace Blazor_pwa.Pages.Components
 
-<style>
-    button {
-        border-radius: 8px;
-        padding: 8px;
-        font-size: medium;
-        border: 1px solid transparent;
-        background-color: var(--color-light);
-        cursor: pointer;
-    }
-
-    button:hover {
-        border-color: var(--color-dark);
-    }
-
-    button:active {
-        background-color: var(--color-accent);
-    }
-</style>
-
-<button type="button">
-    @ChildContent
+<button type="button" class="@Class">
+    @Content
 </button>
 
 @code {
     [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    public string Content { get; set; } = "";
+
+    [Parameter]
+    public string Class { get; set; } = "";
 }
