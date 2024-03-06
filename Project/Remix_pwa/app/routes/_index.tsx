@@ -1,41 +1,25 @@
 import type { MetaFunction } from "@remix-run/node";
+import Dropdown from "~/components/Dropdown";
+import Nav from "~/components/Nav";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Нет пока названия" },
+    { name: "description", content: "Нет пока описания" }
   ];
 };
 
 export default function Index() {
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
-    </div>
+    <body className="flex flex-col h-100 w-100">
+      <Nav>
+        {/* <Dropdown Header="Проект" DropdownMenu={
+          
+        }/> */}
+      </Nav>
+      <main>
+
+      </main>
+    </body>
   );
 }
