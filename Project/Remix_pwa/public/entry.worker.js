@@ -6449,7 +6449,7 @@ var route1 = __toESM(require_manifest_webmanifest());
 var route2 = __toESM(require_index());
 
 // assets-module:@remix-pwa/dev?assets
-var assets = [];
+var assets = ["/build/__remix_entry_dev-GSAD6ZH7.js", "/build/root-7OEQNNK3.js", "/build/manifest-78B3069F.js", "/build/entry.client-U3IBFZPS.js", "/build/_shared\\runtime-GC7QIU56.js", "/build/_shared\\remix_hmr-SAXZS36T.js", "/build/_shared\\react-dom-BEFB7ICU.js", "/build/_shared\\react-3OYUNTOK.js", "/build/_shared\\jsx-runtime-7NXSP56X.js", "/build/_shared\\jsx-dev-runtime-RDH4Y5YT.js", "/build/_shared\\esm-763BNCJL.js", "/build/_shared\\client-DFZR44C7.js", "/build/_shared\\chunk-ZWGWGGVF.js", "/build/_shared\\chunk-XU7DNSPJ.js", "/build/_shared\\chunk-UWV35TSL.js", "/build/_shared\\chunk-PNG5AS42.js", "/build/_shared\\chunk-OFCWP5SZ.js", "/build/_shared\\chunk-GIAAE3CH.js", "/build/_shared\\chunk-CST47L7M.js", "/build/_shared\\chunk-BOXFZXVX.js", "/build/_shared\\chunk-6A64JHJN.js", "/build/_assets\\tailwind-ITG32MIC.css", "/build/_assets\\app-3RHL4CEU.css", "/build/routes\\_index-FACKY2AI.js", "/build/routes\\manifest[.]webmanifest-J3KYYY3Q.js"];
 
 // entry-module:@remix-pwa/build/magic
 var routes = {
