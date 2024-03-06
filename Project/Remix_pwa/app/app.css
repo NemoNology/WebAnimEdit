@@ -1,0 +1,65 @@
+:root {
+    --color-light: #fbf9fa;
+    --color-dark: #242124;
+    --color-primary: #f6b79b;
+    --color-secondary: #ffe7d4;
+    --color-accent: #dfe0df;
+}
+
+* {
+    color: var(--color-dark);
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 400;
+    font-variation-settings: "wdth" 100;
+}
+
+.text-light {
+    font-weight: 300;
+}
+
+.text-semiconsidered {
+    font-variation-settings:
+        "wdth" 87.5;
+}
+
+.text-semibold {
+    font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* TODO: change colors */
+        --color-light: #242124;
+        --color-dark: #fff6f0;
+        --color-primary: #663322;
+        --color-secondary: #312524;
+        --color-accent: #00557e;
+    }
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+
+}
+
+.bg-secondary {
+    background-color: var(--color-secondary);
+}
+
+.bg-light {
+    background-color: var(--color-light);
+}
+
+.bg-dark {
+    background-color: var(--color-dark);
+}
+
+.color-light {
+    color: var(--color-light);
+}
+
+.color-dark {
+    color: var(--color-dark);
+}
