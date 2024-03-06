@@ -1,3 +1,5 @@
+@tailwind base;
+
 :root {
     --color-light: #fbf9fa;
     --color-dark: #242124;
@@ -56,10 +58,18 @@
     background-color: var(--color-dark);
 }
 
+.bg-accent {
+    background-color: var(--color-accent);
+}
+
 .color-light {
     color: var(--color-light);
 }
 
 .color-dark {
     color: var(--color-dark);
+}
+
+.color-accent {
+    color: var(--color-accent);
 }
