@@ -7,7 +7,7 @@ namespace Blazor_pwa.Models.Interfaces
         /// <summary>
         /// Name (Tag) of the HTML element
         /// </summary>
-        public string Name { get; protected set; }
+        public abstract string Name { get; }
         /// <summary>
         /// Dictionary of element parameters as key-value pairs
         /// </summary>
@@ -21,9 +21,8 @@ namespace Blazor_pwa.Models.Interfaces
         /// </summary>
         public Animation? Animation { get; protected set; } = null;
 
-        public HtmlElement(string name)
+        public HtmlElement()
         {
-            Name = name;
             Style.Add("left", "0px");
             Style.Add("top", "0px");
             Style.Add("position", "absolute");
