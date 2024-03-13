@@ -1,18 +1,6 @@
 @namespace Blazor_pwa.Pages.Components
+@inherits ParentComponent
 
-<style>
-    main {
-        display: flex;
-        width: 100%;
-        height: 100%;
-    }
-</style>
-
-<main>
+<main style="display: flex; width: 100%; height: 100%; @Style" class="@Class">
     @ChildContent
 </main>
-
-@code {
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
-}
