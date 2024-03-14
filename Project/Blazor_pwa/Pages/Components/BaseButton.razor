@@ -1,0 +1,25 @@
+@namespace Blazor_pwa.Pages.Components
+@inherits BaseComponent
+
+@code {
+    [Parameter]
+    public string Content { get; set; } = "";
+    [Parameter]
+    public Action OnClick { get; set; } = () => { };
+
+    protected bool isHovered = false;
+    protected bool isActive = false;
+
+    protected string hoverStyle = "";
+    protected string activeStyle = "";
+
+    protected string AddedStyle => (isHovered ? hoverStyle : "") + (isActive ? activeStyle : "");
+
+    protected void OnMouseEnter(Microsoft.AspNetCore.Components.Web.MouseEventArgs e) => isHovered = true;
+
+    protected void OnMouseLeave(Microsoft.AspNetCore.Components.Web.MouseEventArgs e) => isHovered = isActive = false;
+
+    protected void OnMouseDown(Microsoft.AspNetCore.Components.Web.MouseEventArgs e) => isActive = true;
+
+    protected void OnMouseUp(Microsoft.AspNetCore.Components.Web.MouseEventArgs e) => isActive = false;
+}
