@@ -6,14 +6,15 @@
     public string Content { get; set; } = "";
     [Parameter]
     public Action OnClick { get; set; } = () => { };
+    [Parameter]
+    public string HoverStyle { get; set; } = "";
+    [Parameter]
+    public string ActiveStyle { get; set; } = "";
 
     protected bool isHovered = false;
     protected bool isActive = false;
 
-    protected string hoverStyle = "";
-    protected string activeStyle = "";
-
-    protected string AddedStyle => (isHovered ? hoverStyle : "") + (isActive ? activeStyle : "");
+    protected string AddedStyle => (isHovered ? HoverStyle : "") + (isActive ? ActiveStyle : "");
 
     protected void OnMouseEnter(Microsoft.AspNetCore.Components.Web.MouseEventArgs e) => isHovered = true;
 
