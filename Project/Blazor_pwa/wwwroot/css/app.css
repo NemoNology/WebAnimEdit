@@ -13,6 +13,43 @@
     font-style: normal;
     font-weight: 400;
     font-variation-settings: "wdth" 100;
+    box-sizing: border-box;
+}
+
+.p-2 {
+    padding: 4px;
+}
+
+.p-3 {
+    padding: 8px;
+}
+
+.m-3 {
+    margin: 8px;
+}
+
+.gap-1 {
+    gap: 2px;
+}
+
+.gap-2 {
+    gap: 8px;
+}
+
+.gap-3 {
+    gap: 8px;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
 }
 
 .text-light {
@@ -72,6 +109,10 @@ div>* {
 
 .bg-dark {
     background-color: var(--color-dark);
+}
+
+.bg-accent {
+    background-color: var(--color-accent);
 }
 
 .color-light {
