@@ -1,10 +1,6 @@
 @namespace Blazor_pwa.Pages.Components
 @inherits BaseComponent
 
-@{
-    base.BuildRenderTree(__builder);
-}
-
 @code {
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
