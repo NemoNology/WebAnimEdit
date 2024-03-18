@@ -1,5 +1,4 @@
 using Blazor_pwa.Models.Interfaces;
-using Microsoft.AspNetCore.Components.Web;
 
 namespace Blazor_pwa.Models.Implementations
 {
@@ -27,7 +26,7 @@ namespace Blazor_pwa.Models.Implementations
 
         static string BuildElement(HtmlElement element)
         {
-            string res = $"<{element.Name} ";
+            string res = $"<{HtmlElementsInfo.GetHtmlElementTagByType(element.Type)} ";
             foreach ((string key, string value) in element.Attributes)
                 res += $"{key}: {value}; ";
             string styleInfo = "";
