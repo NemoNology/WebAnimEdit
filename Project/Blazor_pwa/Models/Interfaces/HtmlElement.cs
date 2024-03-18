@@ -1,3 +1,4 @@
+using Blazor_pwa.Models.Emums;
 using Blazor_pwa.Models.Implementations;
 
 namespace Blazor_pwa.Models.Interfaces
@@ -5,9 +6,9 @@ namespace Blazor_pwa.Models.Interfaces
     public abstract class HtmlElement
     {
         /// <summary>
-        /// Name (Tag) of the HTML element
+        /// Type of the HTML element
         /// </summary>
-        public abstract string Name { get; }
+        public abstract HtmlElementType Type { get; }
         /// <summary>
         /// Dictionary of element parameters as key-value pairs
         /// </summary>
