@@ -1,10 +1,11 @@
+using Blazor_pwa.Models.Emums;
 using Blazor_pwa.Models.Interfaces;
 
 namespace Blazor_pwa.Models.Implementations
 {
     public class ImageElement : HtmlElement
     {
-        public override string Name => "img";
+        public override HtmlElementType Type => HtmlElementType.Image;
 
         public ImageElement(
             string src = "Введите адрес изображения",
