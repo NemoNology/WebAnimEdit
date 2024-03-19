@@ -1,22 +1,27 @@
-﻿@page "/"
+﻿@using Blazor_pwa.Pages.Components
+@page "/"
 
 <Nav>
-    <Dropdown Header="Проект" ID="project">
-        <button type="button">Новый</button>
-        <button type="button">Открыть</button>
-        <button type="button">Сохранить</button>
-        <button type="button">Сохранить как</button>
-        <button type="button">Сохранить как</button>
-    </Dropdown>
+    <Button Content=" Новый" />
+    <Button Content="Экспорт" />
 </Nav>
 <Main>
-    <div class="flex-grow-1 bg-secondary">
-        Test - Тестик
+    <div class="bg-secondary flex" style="max-width: 20%;">
+        <ProjectTree Project="@project" />
     </div>
     <div style="flex-grow: 4;">
-        Test - Тестик
+
     </div>
-    <div class="flex-grow-1 bg-secondary">
-        Test - Тестик
+    <div class="bg-secondary" style="max-width: 20%;">
+        <FlatButton Content=">" HoverStyle="transform: rotate(45deg) scale(0.75);" OnClick="Test" />
     </div>
 </Main>
+
+@code {
+    Models.Implementations.Project project = new("Безымянный");
+
+    void Test()
+    {
+
+    }
+}
