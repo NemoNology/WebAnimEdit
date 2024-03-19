@@ -2,7 +2,7 @@ using Blazor_pwa.Models.Interfaces;
 
 namespace Blazor_pwa.Models.Implementations
 {
-    public class HtmlDocumentBuilder
+    public static class HtmlDocumentBuilder
     {
         static string GetHeadWithTitle(string title) =>
             $@"<head>
