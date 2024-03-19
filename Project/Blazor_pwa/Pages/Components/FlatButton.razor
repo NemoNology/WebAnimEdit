@@ -1,9 +1,9 @@
 @namespace Blazor_pwa.Pages.Components
 @inherits BaseButton
 
-<button type="button" style="cursor: pointer; border: none; background-color: transparent; @AddedStyle @Style"
-    class="@Class" @onclick="@OnClick" @onmouseenter="OnMouseEnter" @onmouseleave="OnMouseLeave">
-    @Content
+<button type="button" style="cursor: pointer; border: none; background-color: transparent;
+    @AddedStyle @Style" class="@Class" @onclick="@OnClick" @onmouseenter="OnMouseEnter" @onmouseleave="OnMouseLeave">
+    @Header
 </button>
 
 @code {
