@@ -1,9 +1,10 @@
-﻿@using Blazor_pwa.Pages.Components
+﻿@using Blazor_pwa.Models.Implementations
+@using Blazor_pwa.Pages.Components
 @page "/"
 
 <Nav>
-    <Button Content=" Новый" />
-    <Button Content="Экспорт" />
+    <Button Header=" Новый" />
+    <Button Header="Экспорт" />
 </Nav>
 <Main>
     <div class="bg-secondary flex" style="max-width: 20%;">
@@ -12,13 +13,14 @@
     <div style="flex-grow: 4;">
 
     </div>
-    <div class="bg-secondary" style="max-width: 20%;">
-        <FlatButton Content=">" HoverStyle="transform: rotate(45deg) scale(0.75);" OnClick="Test" />
+    <div class="bg-secondary p-2" style="max-width: 20%;">
+        <TreeViewObject Header="@HtmlElementsInfo.GetHtmlElementNameByType(element.Type)" />
     </div>
 </Main>
 
 @code {
-    Models.Implementations.Project project = new("Безымянный");
+    Project project = new("Безымянный");
+    DivElement element = new();
 
     void Test()
     {
