@@ -16,6 +16,10 @@
     box-sizing: border-box;
 }
 
+.p-0 {
+    padding: 0px;
+}
+
 .p-2 {
     padding: 4px;
 }
