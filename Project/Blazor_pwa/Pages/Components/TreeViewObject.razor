@@ -1,0 +1,35 @@
+@using Blazor_pwa.Models.Implementations
+@using Blazor_pwa.Models.Interfaces
+@namespace Blazor_pwa.Pages.Components
+@inherits ParentComponent
+
+<div style="@Style" class="flex gap-2 @Class">
+    @* Text *@
+    <div>@HtmlElementsInfo.GetHtmlElementNameByType(Element.Type)</div>
+    @* Child content open\close button: will be added in future (when html element be able to be a patent) *@
+    @* <FlatButton Content="@iconContent" HoverStyle="@currentHoverStyle" OnClick="toogle" /> *@
+    @* Controls *@
+    <div>
+
+    </div>
+    @* Child content *@
+    <div>
+        @* Will be added when element be able to be a patent *@
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public HtmlElement Element { get; set; } = null!;
+
+    @* bool isToogled = false;
+string iconContent => isToogled ? "v" : "^";
+string currentHoverStyle => isToogled ? toogledHoverStyle : defaultHoverStyle;
+string defaultHoverStyle = "transform: rotate(15deg);";
+string toogledHoverStyle = "transform: rotate(-15deg);";
+
+void toogle()
+{
+isToogled = !isToogled;
+} *@
+}
