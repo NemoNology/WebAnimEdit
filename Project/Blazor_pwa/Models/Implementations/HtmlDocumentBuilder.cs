@@ -4,7 +4,7 @@ namespace Blazor_pwa.Models.Implementations
 {
     public static class HtmlDocumentBuilder
     {
-        static string GetHeadWithTitle(string title) =>
+        public static string GetHeadWithTitle(string title) =>
             $@"<head>
                 <meta charset={"UTF-8"}
                 <meta name={"viewport"} content={"width=device-width, initial-scale=1.0"}
@@ -12,7 +12,7 @@ namespace Blazor_pwa.Models.Implementations
                 <title>{title}</title>;
             </head>";
 
-        static string BuildAnimation(Animation animation)
+        public static string BuildAnimation(Animation animation)
         {
             string res = $"@keyframes {animation.Name} {{\n to {{";
             string transformInfo = "";
@@ -24,7 +24,7 @@ namespace Blazor_pwa.Models.Implementations
             return res;
         }
 
-        static string BuildElement(HtmlElement element)
+        public static string BuildElement(HtmlElement element)
         {
             string res = $"<{HtmlElementsInfo.GetHtmlElementTagByType(element.Type)} ";
             foreach ((string key, string value) in element.Attributes)
@@ -42,7 +42,7 @@ namespace Blazor_pwa.Models.Implementations
             return res;
         }
 
-        static string BuildProject(Project project) =>
+        public static string BuildProject(Project project) =>
             @$"<DOCKTYPE html>
 <html lang=""en"">
     <style>
