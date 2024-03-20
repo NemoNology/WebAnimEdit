@@ -15,13 +15,13 @@ namespace Blazor_pwa.Models.Implementations
 
         public static string BuildAnimation(Animation animation)
         {
-            string res = $"@keyframes {animation.Name} {{\n to {{";
+            string res = $"@keyframes {animation.Name} {{\n\tto {{ ";
             string transformInfo = "";
             foreach ((string key, string value) in animation.Transform)
                 transformInfo += $"{key}: {value}; ";
             if (animation.Transform.Count > 0)
-                res += $"transform: ${transformInfo}; ";
-            res += $"}}\n}}\n";
+                res += $"transform: {transformInfo}; ";
+            res += $"}}\n}}";
             return res;
         }
 
@@ -47,7 +47,7 @@ namespace Blazor_pwa.Models.Implementations
             @$"<DOCKTYPE html>
 <html lang=""en"">
     <style>
-        {string.Join("", project.Elements.Select(el => el.Animation is null ? "" : BuildAnimation(el.Animation)))}
+        {string.Join("\n\t", project.Animations.Select(anim => anim is null ? "" : BuildAnimation(anim)))}
     </style>
     {GetHeadWithTitle(project.Title)}
     <body>
