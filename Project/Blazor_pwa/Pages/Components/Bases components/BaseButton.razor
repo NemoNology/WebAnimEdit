@@ -1,9 +1,7 @@
 @namespace Blazor_pwa.Pages.Components
-@inherits BaseComponent
+@inherits ParentComponent
 
 @code {
-    [Parameter]
-    public string Header { get; set; } = "";
     [Parameter]
     public Action OnClick { get; set; } = () => { };
     [Parameter]
@@ -13,8 +11,7 @@
 
     protected bool isHovered = false;
     protected bool isActive = false;
-
-    protected string AddedStyle => (isHovered ? HoverStyle : "") + (isActive ? ActiveStyle : "");
+    protected string AddedStyle => $"{(isHovered ? HoverStyle : "")} {(isActive ? ActiveStyle : "")}";
 
     protected void OnMouseEnter(Microsoft.AspNetCore.Components.Web.MouseEventArgs e) => isHovered = true;
 
