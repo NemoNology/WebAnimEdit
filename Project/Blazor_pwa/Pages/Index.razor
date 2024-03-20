@@ -11,13 +11,18 @@
         <ProjectComponentsView Project="@project" />
     </div>
     <div style="flex-grow: 4;">
-
+        <Button OnClick="LogProjectBuild" Class="filter-invert">Build in log</Button>
     </div>
-    <div class="bg-secondary p-2" style="max-width: 20%;">
+    <div class="bg-secondary" style="max-width: 20%;">
 
     </div>
 </Main>
 
 @code {
     Project project = new("Безымянный");
+
+    void LogProjectBuild()
+    {
+        Console.WriteLine(HtmlDocumentBuilder.BuildProject(project));
+    }
 }
