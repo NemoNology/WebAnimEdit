@@ -20,7 +20,7 @@
                 <div style="display: flex; flex-direction: column;">
                     @foreach (var el in Project.Elements)
                     {
-                        <div>@HtmlElementsInfo.GetHtmlElementNameByType(el.Type) <br></div>
+                        <TreeViewObject Element="@el" />
                     }
                 </div>
             </div>
