@@ -139,6 +139,10 @@ div>* {
     flex-grow: 1;
 }
 
+.filter-invert {
+    filter: invert();
+}
+
 #blazor-error-ui {
     background: var(--color-light);
     bottom: 0;
