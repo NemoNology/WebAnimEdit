@@ -1,4 +1,5 @@
 @using Blazor_pwa.Models.Implementations
+@using Blazor_pwa.Models.Interfaces
 @namespace Blazor_pwa.Pages.Components
 @inherits BaseComponent
 
@@ -10,9 +11,9 @@
     </div>
     <div style="border: 4px solid var(--color-accent);" class="bg-light w-100 flex flex-col gap-2 flex-grow-1">
         <div style="justify-content: space-around;" class="bg-accent flex p-2 w-100">
-            <Button Content="+div" OnClick="AddDiv" />
-            <Button Content="+img" OnClick="AddImg" />
-            <Button Content="+anim" OnClick="AddAnimation" />
+            <Button OnClick="AddDiv">+div</Button>
+            <Button OnClick="AddImg">+img</Button>
+            <Button OnClick="AddAnimation">+anim</Button>
         </div>
         <div style="display: flex; flex-direction: column; flex-grow: 1; width: 100%;">
             <div class="flex-grow-1" style="overflow: auto;">
@@ -20,7 +21,8 @@
                 <div style="display: flex; flex-direction: column;">
                     @foreach (var el in Project.Elements)
                     {
-                        <TreeViewObject Element="@el" />
+                        <ListViewObject Header="@HtmlElementsInfo.GetHtmlElementNameByType(el.Type)" Object="el"
+                            OnDeleteClick="@DeleteElement" />
                     }
                 </div>
             </div>
@@ -29,7 +31,7 @@
                 <div style="display: flex; flex-direction: column;">
                     @foreach (var anim in Project.Animations)
                     {
-                        <div>@anim.Name <br></div>
+                        <ListViewObject Header="@anim.Name" Object="anim" OnDeleteClick="DeleteAnimation" />
                     }
                 </div>
             </div>
@@ -39,20 +41,32 @@
 
 @code {
     [Parameter, EditorRequired]
-    public Models.Implementations.Project Project { get; set; } = null!;
+    public Project Project { get; set; } = null!;
 
     void AddDiv()
     {
-        Project.Elements.Add(new Models.Implementations.DivElement());
+        Project.Elements.Add(new DivElement());
     }
 
     void AddImg()
     {
-        Project.Elements.Add(new Models.Implementations.ImageElement());
+        Project.Elements.Add(new ImageElement());
     }
 
     void AddAnimation()
     {
-        Project.Animations.Add(new Models.Implementations.Animation("animation"));
+        Project.Animations.Add(new Animation("animation"));
+    }
+
+    void DeleteElement(object? element)
+    {
+        if (element is HtmlElement && element is not null)
+            Project.Elements.Remove((HtmlElement)element);
+    }
+
+    void DeleteAnimation(object? animation)
+    {
+        if (animation is Animation && animation is not null)
+            Project.Animations.Remove((Animation)animation);
     }
 }
