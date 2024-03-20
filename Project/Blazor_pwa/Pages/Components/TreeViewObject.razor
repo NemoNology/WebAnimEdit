@@ -1,29 +1,25 @@
-@using Blazor_pwa.Models.Implementations
-@using Blazor_pwa.Models.Interfaces
 @namespace Blazor_pwa.Pages.Components
-@inherits ParentComponent
+@inherits ListViewObject
 
-<div style="@Style" class="flex gap-2 @Class">
-    @* Text *@
-    <div>@HtmlElementsInfo.GetHtmlElementNameByType(Element.Type)</div>
-    @* Child content open\close button: will be added in future (when html element be able to be a patent) *@
-    @* <FlatButton Content="@iconContent" HoverStyle="@currentHoverStyle" OnClick="toogle" /> *@
-    @* Controls *@
-    <div>
-
-    </div>
-    @* Child content *@
-    <div>
-        @* Will be added when element be able to be a patent *@
-    </div>
-</div>
+@{
+    base.BuildRenderTree(__builder);
+}
 
 @code {
-    [Parameter, EditorRequired]
-    public HtmlElement Element { get; set; } = null!;
+    public TreeViewObject()
+    {
+        @* beforeHeaderControls = builder =>
+{
+builder.OpenElement(0, "FlatButton");
+builder.AddAttribute(1, "Content", "@iconContent");
+builder.AddAttribute(2, "OnClick", "toogle");
+builder.CloseElement();
+};
+*@
+    }
 
     @* bool isToogled = false;
-string iconContent => isToogled ? "v" : "^";
+string iconContent => isToogled ? "v" : ">";
 string currentHoverStyle => isToogled ? toogledHoverStyle : defaultHoverStyle;
 string defaultHoverStyle = "transform: rotate(15deg);";
 string toogledHoverStyle = "transform: rotate(-15deg);";
