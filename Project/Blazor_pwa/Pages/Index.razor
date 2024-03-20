@@ -8,22 +8,16 @@
 </Nav>
 <Main>
     <div class="bg-secondary flex" style="max-width: 20%;">
-        @* <ProjectTree Project="@project" /> *@
+        <ProjectComponentsView Project="@project" />
     </div>
     <div style="flex-grow: 4;">
 
     </div>
     <div class="bg-secondary p-2" style="max-width: 20%;">
-        <TreeViewObject Header="@HtmlElementsInfo.GetHtmlElementNameByType(element.Type)" />
+
     </div>
 </Main>
 
 @code {
     Project project = new("Безымянный");
-    DivElement element = new();
-
-    void Test()
-    {
-
-    }
 }
