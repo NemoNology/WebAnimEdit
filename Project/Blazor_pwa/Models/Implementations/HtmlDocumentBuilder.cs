@@ -5,12 +5,13 @@ namespace Blazor_pwa.Models.Implementations
     public static class HtmlDocumentBuilder
     {
         public static string GetHeadWithTitle(string title) =>
-            $@"<head>
-                <meta charset={"UTF-8"}
-                <meta name={"viewport"} content={"width=device-width, initial-scale=1.0"}
-                <meta http-equiv={"X-UA-Compatible"} content={"ie=edge"}
-                <title>{title}</title>;
-            </head>";
+            $@"
+<head>
+    <meta charset={"UTF-8"}
+    <meta name={"viewport"} content={"width=device-width, initial-scale=1.0"}
+    <meta http-equiv={"X-UA-Compatible"} content={"ie=edge"}
+    <title>{title}</title>;
+</head>";
 
         public static string BuildAnimation(Animation animation)
         {
@@ -46,11 +47,11 @@ namespace Blazor_pwa.Models.Implementations
             @$"<DOCKTYPE html>
 <html lang=""en"">
     <style>
-        {project.Elements.Select(el => el.Animation is null ? "" : BuildAnimation(el.Animation))}
+        {string.Join("", project.Elements.Select(el => el.Animation is null ? "" : BuildAnimation(el.Animation)))}
     </style>
     {GetHeadWithTitle(project.Title)}
     <body>
-        {project.Elements.Select(el => BuildElement(el) + "\n")}
+        {string.Join("", project.Elements.Select(el => BuildElement(el) + "\n"))}
     </body>
 </html>";
     }
