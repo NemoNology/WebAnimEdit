@@ -1,13 +1,15 @@
 @namespace Blazor_pwa.Pages.Components
-@inherits ParentComponent
+@inherits BaseButton
 
-<div style="justify-content: space-between; @Style" class="flex gap-2 w-100 @Class">
+<div style="justify-content: space-between; @AddedStyle @Style" class="flex gap-2 w-100 p-2 @Class"
+    @onmouseenter="@OnMouseEnter" @onmouseleave="@OnMouseLeave" @onmousedown="@OnMouseDown" @onmouseup="@OnMouseUp">
     @beforeHeaderControls
     @Header
     @* Controls *@
     <div style="align-items: center;" class="flex gap-1">
         @* Delete button *@
-        <FlatButton Class="p-0" OnClick="OnDeleteClicked">
+        <FlatButton Class="" OnClick="OnDeleteClicked" Style="border-radius: 8px; border: 1px solid var(--color-dark);"
+            HoverStyle="scale: 1.1; background-color: var(--color-secondary);">
             <img src="src/images/icon-delete.svg" alt="Кнопка: удалить элемент списка" style="height: 8px;">
         </FlatButton>
         @* Rename button - TODO: Add when element will be able to have a name/id in list*@
@@ -19,12 +21,19 @@
 
 @code {
     [Parameter]
-    public string? Header { get; set; }
+    public string Header { get; set; } = "";
     [Parameter]
-    public Action<object?>? OnDeleteClick { get; set; }
+    public Action<object?> OnDeleteClick { get; set; } = o => { };
     [Parameter]
-    public object? Object { get; set; }
+    public object? Object { get; set; } = null;
+
+    protected override void OnParametersSet()
+    {
+        HoverStyle = "background-color: var(--color-accent);";
+        ActiveStyle = "background-color: var(--color-primary);";
+        base.OnParametersSet();
+    }
 
     protected RenderFragment? beforeHeaderControls;
-    protected void OnDeleteClicked() => OnDeleteClick?.Invoke(Object);
+    protected void OnDeleteClicked() => OnDeleteClick.Invoke(Object);
 }
