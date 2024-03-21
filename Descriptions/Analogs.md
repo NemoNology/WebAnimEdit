@@ -1,25 +1,13 @@
 # Analogs:
-- [OnlyMega](https://onlymega.com)
+- Html5 animations designers ([OnlyMega](https://onlymega.com), [Tumult Hype](https://tumult.com/hype/))
   - **Pros:**
-    - Online-designer
-    - Ease to use
-    - Not only for Web, also: videos, images
-    - There are animations templates
-    - Included images-stock
+    - Powerfulness (Work with 3D*, all requered tools for animations)
+    - Not interactive animations
+    - Not only html animations export, also video, images and other*
+    - There are animations templates**
+    - Included assets store**
   - **Cons:**
-    - Not free - Paid use plans
-    - Most needed functions, not including animation, are not free (Like *)
-  - **Unknown:**
-    - Optimizing the animation result
-- [Tumult Hype](https://tumult.com/hype/)
-  - **Pros:**
-    - Free trial
-  - **Cons:**
-    - Only for macOS
-    - Not free - Paid desktop app
-  - **Unknown:**
-    - Ease to use
-    - Optimizing the animation result
+    - Not free - Paid use plans (Not all)
 - [Google Web Designer](https://webdesigner.withgoogle.com)
   - **Pros:**
     - Not only HTML5 animation designer (Plus videos, photos and other)
@@ -47,7 +35,7 @@
     - All in chinese...
   - **Unknown:**
     - All, not including language...
-- [Radi]()
+- [Radi](https://radiapp.com/)
   - **Pros:**
     - Powerful animation designer
     - Ease to use (by view)
@@ -56,3 +44,16 @@
   - **Cons:**
     - Only for macOS
     - Output: HTML + JS => Not optimized animation? *(But it's a tool for difficult animation so it's normal)*
+- Sites designers [Wix](https://www.wix.com/)
+  - **Pros:**
+    - Powerfull site designer
+    - Online-designer
+  - **Cons:**
+    - Specified for web-sites design, not html5 animations
+- 
+# Not full analogs:
+- [Animista ](https://animista.net/)
+
+\* \- Not all apps provide this feature
+
+\** \- Most off apps provide this feature
