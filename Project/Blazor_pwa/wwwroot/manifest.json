@@ -1,7 +1,7 @@
 {
-  "name": "Нет пока названия",
-  "short_name": "Нет пока названия",
-  "description": "Нет пока чётких подробностей",
+  "name": "ВеббиМульт",
+  "short_name": "ВеббиМульт",
+  "description": "Редактор мультипликации на основе HTML5 (+ CSS3 & JS)",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
