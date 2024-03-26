@@ -3,7 +3,7 @@ using Blazor_pwa.Models.Implementations;
 
 namespace Blazor_pwa.Models.Interfaces
 {
-    public abstract class HtmlElement
+    public abstract class AbstractHtmlElement
     {
         /// <summary>
         /// Type of the HTML element
@@ -22,7 +22,7 @@ namespace Blazor_pwa.Models.Interfaces
         /// </summary>
         public Animation? Animation { get; protected set; } = null;
 
-        public HtmlElement()
+        public AbstractHtmlElement()
         {
             Style.Add("left", "0px");
             Style.Add("top", "0px");
