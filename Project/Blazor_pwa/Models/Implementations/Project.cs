@@ -5,7 +5,7 @@ namespace Blazor_pwa.Models.Implementations
     public class Project
     {
         public string Title { get; set; }
-        public List<HtmlElement> Elements { get; private set; } = new();
+        public List<AbstractHtmlElement> Elements { get; private set; } = new();
         public List<Animation> Animations { get; private set; } = new();
 
         public Project(string title)

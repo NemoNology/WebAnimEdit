@@ -25,7 +25,7 @@ namespace Blazor_pwa.Models.Implementations
             return res;
         }
 
-        public static string BuildElement(HtmlElement element)
+        public static string BuildElement(AbstractHtmlElement element)
         {
             string res = $"<{HtmlElementsInfo.GetHtmlElementTagByType(element.Type)} ";
             foreach ((string key, string value) in element.Attributes)

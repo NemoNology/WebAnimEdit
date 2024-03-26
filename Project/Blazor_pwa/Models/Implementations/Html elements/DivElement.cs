@@ -3,7 +3,7 @@ using Blazor_pwa.Models.Interfaces;
 
 namespace Blazor_pwa.Models.Implementations
 {
-    public class DivElement : HtmlElement
+    public class DivElement : AbstractHtmlElement
     {
         public override HtmlElementType Type => HtmlElementType.Div;
 

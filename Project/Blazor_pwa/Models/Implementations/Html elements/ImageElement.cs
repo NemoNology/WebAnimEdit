@@ -3,7 +3,7 @@ using Blazor_pwa.Models.Interfaces;
 
 namespace Blazor_pwa.Models.Implementations
 {
-    public class ImageElement : HtmlElement
+    public class ImageElement : AbstractHtmlElement
     {
         public override HtmlElementType Type => HtmlElementType.Image;
 
