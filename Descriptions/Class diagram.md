@@ -6,11 +6,11 @@ classDiagram
     class AbstractHtmlElement{
         +Type: HtmlElementType
     }
-    class ObjectWithPropertiesBlocks{
-        +PropertiesBlocks: PropertiesBlock[]
+    class AbstractObjectWithBlocksOfProperties{
+        +BlocksOfProperties: AbstractBlockOfProperties[]
     }
-    class PropertiesBlock{
-        +Type: PropertiesBlockType
+    class AbstractBlockOfProperties{
+        +Type: AbstractBlockOfPropertiesType
         // Property is name and value
         +Properties: Dictionary~string, string~
     }
@@ -39,7 +39,7 @@ classDiagram
         Image
         Script
     }
-    class PropertiesBlockType{
+    class AbstractBlockOfPropertiesType{
         <<enum>>
         Attributes
         Style
@@ -60,10 +60,10 @@ classDiagram
         +BuildHtmlElement(Animation) string$
         +BuildProject(Project) string$
     }
-    ObjectWithPropertiesBlocks<|--AbstractHtmlElement
-    ObjectWithPropertiesBlocks<|--KeyFrame
-    ObjectWithPropertiesBlocks*--PropertiesBlock
-    PropertiesBlock*--PropertiesBlockType
+    AbstractObjectWithBlocksOfProperties<|--AbstractHtmlElement
+    AbstractObjectWithBlocksOfProperties<|--KeyFrame
+    AbstractObjectWithBlocksOfProperties*--AbstractBlockOfProperties
+    AbstractBlockOfProperties*--AbstractBlockOfPropertiesType
     Animation*--KeyFrame
     AbstractHtmlElement*--HtmlElementType
     Project*--AbstractHtmlElement
