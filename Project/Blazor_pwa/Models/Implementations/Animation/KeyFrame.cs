@@ -1,13 +1,13 @@
+using Blazor_pwa.Models.Enums;
+using Blazor_pwa.Models.Interfaces;
+
 namespace Blazor_pwa.Models.Implementations
 {
-    public struct KeyFrame
+    public class KeyFrame : IObjectWithBlocksOfProperties
     {
-        public int PercentValue { get; set; }
-        public readonly Dictionary<string, string> ChangingProperties { get; }
+        private readonly BlockOfProperties[] _blocks = { BlocksOfProperties.Transform };
 
-        public KeyFrame()
-        {
-            ChangingProperties = new();
-        }
+        public int PercentValue { get; set; }
+        public BlockOfProperties[] Blocks => _blocks;
     }
 }
