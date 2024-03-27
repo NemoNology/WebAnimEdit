@@ -44,6 +44,7 @@ classDiagram
         Attributes
         Style
         Classes
+        AnimationTransform
         Animations
         EventsHandlers
     }
