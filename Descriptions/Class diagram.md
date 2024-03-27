@@ -3,14 +3,15 @@
 ```mermaid
 classDiagram
     direction LR
-    class HtmlElement{
+    class AbstractHtmlElement{
         +Type: HtmlElementType
     }
     class ObjectWithPropertiesBlocks{
         +PropertiesBlocks: PropertiesBlock[]
     }
     class PropertiesBlock{
-        +ID/Type: PropertiesBlockID/Type
+        +Type: PropertiesBlockType
+        // Property is name and value
         +Properties: Dictionary~string, string~
     }
     class Animation{
@@ -21,18 +22,29 @@ classDiagram
         +Selector: double
     }
     class Project{
-        +HtmlElements: List~HtmlElement~
+        +HtmlElement: AbstractHtmlElement
         +Animations" List~Animation~
     }
     class HtmlElementType{
         <<enum>>
         None
+        Html
+        Style        
+        Head
+        Title
+        Meta
+        Link
+        Body
         Division
         Image
+        Script
     }
     class HtmlElementsInfo{
         +GetHtmlElementNameByType(HtmlElementType) string$
         +GetHtmlElementTagByType(HtmlElementType) string$
+        +GetHtmlElementBaseAttributesBlockByType(HtmlElementType) PropertiesBlock$
+        +BaseStyleBlock PropertiesBlock$
+        +HtmlElementsEventsList string[]$
     }
     class HtmlDocumentBuilder{
         +GetDocumentHeadWithSpecifiedTitle(string) string$
@@ -40,12 +52,11 @@ classDiagram
         +BuildHtmlElement(Animation) string$
         +BuildProject(Project) string$
     }
-    note for PropertiesBlock "TODO: change 'prop-s' prop-ty type"
-    ObjectWithPropertiesBlocks<|--HtmlElement
+    ObjectWithPropertiesBlocks<|--AbstractHtmlElement
     ObjectWithPropertiesBlocks<|--KeyFrame
     ObjectWithPropertiesBlocks*--PropertiesBlock
     Animation*--KeyFrame
-    HtmlElement*--HtmlElementType
-    Project*--HtmlElement
+    AbstractHtmlElement*--HtmlElementType
+    Project*--AbstractHtmlElement
     Project*--Animation
 ```
