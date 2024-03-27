@@ -7,10 +7,10 @@ classDiagram
         +Type: HtmlElementType
     }
     class ObjectWithBlocksOfProperties{
-        +BlocksOfProperties: BlockOfProperties[]
+        +Blocks: BlockOfProperties[]
     }
     class BlockOfProperties{
-        +Type: BlockOfPropertiesType
+        +Type: BlockType
         // Property is name and value
         +Properties: Dictionary~string, string~
     }
@@ -39,7 +39,7 @@ classDiagram
         Image
         Script
     }
-    class BlockOfPropertiesType{
+    class BlockType{
         <<enum>>
         Attributes
         Style
@@ -64,7 +64,7 @@ classDiagram
     ObjectWithBlocksOfProperties<|--AbstractHtmlElement
     ObjectWithBlocksOfProperties<|--KeyFrame
     ObjectWithBlocksOfProperties*--BlockOfProperties
-    BlockOfProperties*--BlockOfPropertiesType
+    BlockOfProperties*--BlockType
     Animation*--KeyFrame
     AbstractHtmlElement*--HtmlElementType
     Project*--AbstractHtmlElement
