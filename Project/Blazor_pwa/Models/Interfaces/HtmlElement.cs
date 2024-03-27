@@ -10,9 +10,14 @@ namespace Blazor_pwa.Models.Interfaces
         /// Type of the HTML element
         /// </summary>
         public HtmlElementType Type { get; private set; }
-
-        public Dictionary<string, string> Attributes { get; private set; } = new();
+        public Dictionary<string, string> Attributes { get; private set; }
         public Dictionary<string, string> Style { get; private set; } = new();
         public Dictionary<string, string> AnimationStyle { get; private set; } = new();
+
+        public HtmlElement(HtmlElementType type, Dictionary<string, string>? attributes = null)
+        {
+            Type = type;
+            Attributes = attributes ?? new();
+        }
     }
 }
