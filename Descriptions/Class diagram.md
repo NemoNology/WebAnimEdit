@@ -16,7 +16,7 @@ classDiagram
     }
     class Animation{
         +Name: string
-        +KeyFrames: List<KeyFrame>
+        +KeyFrames: List~KeyFrame~
     }
     class KeyFrame{
         +Selector: double
@@ -39,6 +39,14 @@ classDiagram
         Image
         Script
     }
+    class PropertiesBlockType{
+        <<enum>>
+        Attributes
+        Style
+        Classes
+        Animations
+        EventsHandlers
+    }
     class HtmlElementsInfo{
         +GetHtmlElementNameByType(HtmlElementType) string$
         +GetHtmlElementTagByType(HtmlElementType) string$
@@ -55,6 +63,7 @@ classDiagram
     ObjectWithPropertiesBlocks<|--AbstractHtmlElement
     ObjectWithPropertiesBlocks<|--KeyFrame
     ObjectWithPropertiesBlocks*--PropertiesBlock
+    PropertiesBlock*--PropertiesBlockType
     Animation*--KeyFrame
     AbstractHtmlElement*--HtmlElementType
     Project*--AbstractHtmlElement
