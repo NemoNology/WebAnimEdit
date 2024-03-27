@@ -1,0 +1,37 @@
+@namespace Blazor_pwa.Pages.Components
+
+<div class="flex flex-col">
+    @foreach ((string key, string value) in Dictionary)
+    {
+        <div class="flex w-100" style="justify-content: space-between;">
+            <div class="flex">
+                <label>@key</label>:
+                <input type="text" value="@value" size="4" @onchange='eventArgs => {
+                        Dictionary[key] = 
+                            eventArgs.Value is null ? "" : eventArgs.Value.ToString()!;
+                        }' />
+            </div>
+            <FlatButton OnClick='() => {
+                Dictionary.Remove(key);
+                StateHasChanged();
+                }'>x</FlatButton>
+        </div>
+    }
+    <div class="flex" style="align-self: center;">
+        <input type="text" size="4" @bind="@_newKey">
+        <button type="button" @onclick='() => {
+                if (Dictionary.ContainsKey(_newKey))
+                   return;
+                Dictionary[_newKey] = "value";
+                _newKey = "new";
+                StateHasChanged();
+                }'>+</button>
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public Dictionary<string, string> Dictionary { get; set; } = null!;
+
+    string _newKey = "new";
+}
