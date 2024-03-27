@@ -5,8 +5,7 @@ namespace Blazor_pwa.Models.Implementations
     public static class HtmlDocumentBuilder
     {
         public static string Head =>
-            $@"
-<head>
+            $@"<head>
     <meta charset={"UTF-8"}
     <meta name={"viewport"} content={"width=device-width, initial-scale=1.0"}
     <meta http-equiv={"X-UA-Compatible"} content={"ie=edge"}
@@ -26,9 +25,10 @@ namespace Blazor_pwa.Models.Implementations
 
         public static string BuildElement(HtmlElement element, int number)
         {
-            string res = $"<{HtmlElementsInfo.GetHtmlElementTagByType(element.Type)} ";
-            foreach ((string key, string value) in element.Attributes)
-                res += $"{key}=\"{value}\"";
+            string res = $"<{HtmlElementsInfo.GetHtmlElementTagByType(element.Type)}";
+            if (element.Attributes.Count > 0)
+                foreach ((string key, string value) in element.Attributes)
+                    res += $" {key}=\"{value}\"";
             if (element.Style.Count > 0)
             {
                 res += "style=\"";
@@ -39,7 +39,7 @@ namespace Blazor_pwa.Models.Implementations
                 res += "\"";
             }
 
-            return res;
+            return res + "/>";
         }
 
         public static string BuildProject(Project project)
@@ -51,21 +51,24 @@ namespace Blazor_pwa.Models.Implementations
             // Getting animations and elements as strings
             foreach (HtmlElement el in project.Elements)
             {
-                if (el.AnimationStyle is not null)
+                if (el.AnimationStyle.Count > 0)
                     animations += BuildAnimation(el.AnimationStyle, counter) + "\n";
-                elements += BuildElement(el, counter) + "\n";
+                elements += $"\t{BuildElement(el, counter)}\n";
                 counter++;
             }
             // Building html with html document tag and head
             var res = $"<DOCKTYPE html>\n<html lang=\"en\">\n{Head}\n";
             // Adding animations in style element
             if (animations.Length > 0)
-                res += $"<style>\n{animations}\n</style>";
+            {
+                Console.WriteLine($"Animations string: '{animations}'");
+                res += $"<style>\n{animations}\n</style>\n";
+            }
             // Adding body
             res += "<body>\n";
             // Adding elements in body element
             if (elements.Length > 0)
-                res += $"{elements}\n";
+                res += $"{elements}";
             // Closing body and html tags
             res += "</body>\n</html>";
 
