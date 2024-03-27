@@ -5,6 +5,7 @@ namespace Blazor_pwa.Models.Emums
         Attributes,
         Style,
         Classes,
+        AnimationTransform,
         Animations,
         EventHandlers,
     }
