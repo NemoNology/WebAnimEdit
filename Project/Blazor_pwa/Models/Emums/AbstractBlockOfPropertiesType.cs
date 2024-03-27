@@ -1,6 +1,6 @@
 namespace Blazor_pwa.Models.Emums
 {
-    public enum PropertiesBlockType
+    public enum AbstractBlockOfPropertiesType
     {
         Attributes,
         Style,
