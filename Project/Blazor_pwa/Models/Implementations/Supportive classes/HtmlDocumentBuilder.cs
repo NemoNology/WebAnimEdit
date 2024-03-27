@@ -4,55 +4,72 @@ namespace Blazor_pwa.Models.Implementations
 {
     public static class HtmlDocumentBuilder
     {
-        public static string GetHeadWithTitle(string title) =>
+        public static string Head =>
             $@"
 <head>
     <meta charset={"UTF-8"}
     <meta name={"viewport"} content={"width=device-width, initial-scale=1.0"}
     <meta http-equiv={"X-UA-Compatible"} content={"ie=edge"}
-    <title>{title}</title>;
+    <title>Без названия</title>;
 </head>";
 
-        public static string BuildAnimation(Animation animation)
+        public static string BuildAnimation(Dictionary<string, string> animation, int number)
         {
-            string res = $"@keyframes {animation.Name} {{\n\tto {{ ";
-            string transformInfo = "";
-            foreach ((string key, string value) in animation.Transform)
-                transformInfo += $"{key}: {value}; ";
-            if (animation.Transform.Count > 0)
-                res += $"transform: {transformInfo}; ";
-            res += $"}}\n}}";
+            if (animation.Count < 1)
+                return "";
+            string res = $"@keyframes animation{number} {{\nto {{ ";
+            foreach ((string key, string value) in animation)
+                res += $"{key}: {value};\n";
+            res += "}\n}";
             return res;
         }
 
-        public static string BuildElement(AbstractHtmlElement element)
+        public static string BuildElement(HtmlElement element, int number)
         {
             string res = $"<{HtmlElementsInfo.GetHtmlElementTagByType(element.Type)} ";
             foreach ((string key, string value) in element.Attributes)
-                res += $"{key}: {value}; ";
-            string styleInfo = "";
-            foreach ((string key, string value) in element.Style)
-                styleInfo += $"{key}: {value}; ";
+                res += $"{key}=\"{value}\"";
             if (element.Style.Count > 0)
             {
-                res += $"style=\"{styleInfo} ";
-                if (element.Animation is not null)
-                    res += $"animation-name: {element.Animation.Name} ";
-                res += "\";";
+                res += "style=\"";
+                foreach ((string key, string value) in element.Style)
+                    res += $"{key}: {value}; ";
+                if (element.AnimationStyle is not null)
+                    res += $"animation-name: animation{number};";
+                res += "\"";
             }
+
             return res;
         }
 
-        public static string BuildProject(Project project) =>
-            @$"<DOCKTYPE html>
-<html lang=""en"">
-    <style>
-        {string.Join("\n\t", project.Animations.Select(anim => anim is null ? "" : BuildAnimation(anim)))}
-    </style>
-    {GetHeadWithTitle(project.Title)}
-    <body>
-        {string.Join("", project.Elements.Select(el => BuildElement(el) + "\n"))}
-    </body>
-</html>";
+        public static string BuildProject(Project project)
+        {
+            var animations = "";
+            var elements = "";
+            var counter = 0;
+
+            // Getting animations and elements as strings
+            foreach (HtmlElement el in project.Elements)
+            {
+                if (el.AnimationStyle is not null)
+                    animations += BuildAnimation(el.AnimationStyle, counter) + "\n";
+                elements += BuildElement(el, counter) + "\n";
+                counter++;
+            }
+            // Building html with html document tag and head
+            var res = $"<DOCKTYPE html>\n<html lang=\"en\">\n{Head}\n";
+            // Adding animations in style element
+            if (animations.Length > 0)
+                res += $"<style>\n{animations}\n</style>";
+            // Adding body
+            res += "<body>\n";
+            // Adding elements in body element
+            if (elements.Length > 0)
+                res += $"{elements}\n";
+            // Closing body and html tags
+            res += "</body>\n</html>";
+
+            return res;
+        }
     }
 }
