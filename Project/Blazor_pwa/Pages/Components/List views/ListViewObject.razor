@@ -1,18 +1,19 @@
 @namespace Blazor_pwa.Pages.Components
 @inherits BaseButton
 
-<div style="justify-content: space-between; @AddedStyle @Style" class="flex gap-2 w-100 p-2 @Class"
+<div style="justify-content: space-between; @AddedStyle @Style" class="flex w-100 p-1 @Class"
     @onmouseenter="@OnMouseEnter" @onmouseleave="@OnMouseLeave" @onmousedown="@OnMouseDown" @onmouseup="@OnMouseUp">
     @beforeHeaderControls
     @Header
     @* Controls *@
     <div style="align-items: center;" class="flex gap-1">
         @* Delete button *@
-        <FlatButton Class="" OnClick="OnDeleteClicked" Style="border-radius: 8px; border: 1px solid var(--color-dark);"
+        <FlatButton Class="" OnClick="() => OnDeleteClick.Invoke(Object)"
+            Style="border-radius: 8px; border: 1px solid var(--color-dark);"
             HoverStyle="scale: 1.1; background-color: var(--color-secondary);">
             <img src="src/images/icon-delete.svg" alt="Кнопка: удалить элемент списка" style="height: 8px;">
         </FlatButton>
-        @* Rename button - TODO: Add when element will be able to have a name/id in list*@
+        @* Rename button - TODO: Add when element will be able to have a id*@
         @* <FlatButton Content="П" Class="p-0" /> *@
     </div>
     @* Child content *@
@@ -35,5 +36,4 @@
     }
 
     protected RenderFragment? beforeHeaderControls;
-    protected void OnDeleteClicked() => OnDeleteClick.Invoke(Object);
 }
