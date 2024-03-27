@@ -23,6 +23,7 @@ namespace Blazor_pwa.Models.Enums
             new() {
                 {"left", "0px"}, {"top", "0px"}, {"position", "absolute"},
                 {"width", "0px"}, {"height", "0px"}, {"z-index", "0"},
+                {"animation-duration", "1s"}
             });
     }
 }
