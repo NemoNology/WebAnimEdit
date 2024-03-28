@@ -1,28 +1,51 @@
 ﻿@using Blazor_pwa.Models.Implementations
+@using Blazor_pwa.Models.Interfaces
 @using Blazor_pwa.Pages.Components
 @page "/"
 
 <Nav>
-    <Button>Новый</Button>
-    <Button>Экспорт</Button>
+    <Button OnClick="() => {
+        Project = new();
+        SelectedElement = null;
+        }">Новый проект</Button>
+    @* <Button OnClick='async () => {
+
+        }'>Экспорт в файл</Button> *@
+    <Button OnClick="() => {
+        Console.Clear();
+        Console.WriteLine(HtmlDocumentBuilder.BuildProject(Project, true));
+        }">Вывод в консоль</Button>
 </Nav>
 <Main>
-    <div class="bg-secondary flex" style="max-width: 20%;">
-        <ProjectComponentsView Project="@project" />
+    <div class="bg-secondary flex" style="width: 15%;">
+        <ProjectComponentsView Project="@Project" OnElementClick="el => {
+            SelectedElement = el;
+            StateHasChanged();
+            }" OnElementDelete="el => {
+                if (el == SelectedElement)
+                {
+                    SelectedElement = null;
+                    StateHasChanged();
+                }
+            }" />
     </div>
     <div style="flex-grow: 4;">
-        <Button OnClick="LogProjectBuild" Class="filter-invert">Build in log</Button>
+        <Previewer GetMarkupString="() => HtmlDocumentBuilder.BuildProject(Project)" />
     </div>
-    <div class="bg-secondary" style="max-width: 20%;">
-
+    <div class="flex flex-col bg-secondary gap-2" style="max-width: 20%;">
+        @if (SelectedElement is not null)
+        {
+            <div>Аттрибуты</div>
+            <DictionaryEditor Dictionary="SelectedElement.Attributes" />
+            <div>Стиль</div>
+            <DictionaryEditor Dictionary="SelectedElement.Style" />
+            <div>Анимация</div>
+            <DictionaryEditor Dictionary="SelectedElement.AnimationStyle" />
+        }
     </div>
 </Main>
 
 @code {
-    Project project = new("Безымянный");
-
-    void LogProjectBuild()
-    {
-        Console.WriteLine(HtmlDocumentBuilder.BuildProject(project));
-    }
+    private Project Project { get; set; } = new();
+    private HtmlElement? SelectedElement { get; set; } = null;
 }
