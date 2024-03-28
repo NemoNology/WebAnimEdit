@@ -1,14 +1,16 @@
+@using Blazor_pwa.Models.Interfaces
 @namespace Blazor_pwa.Pages.Components
 @inherits BaseButton
 
 <div style="justify-content: space-between; @AddedStyle @Style" class="flex w-100 p-1 @Class"
-    @onmouseenter="@OnMouseEnter" @onmouseleave="@OnMouseLeave" @onmousedown="@OnMouseDown" @onmouseup="@OnMouseUp">
+    @onmouseenter="@OnMouseEnter" @onmouseleave="@OnMouseLeave" @onmousedown="@OnMouseDown" @onmouseup="@OnMouseUp"
+    @onclick="() => OnElementClick.Invoke(Element)">
     @beforeHeaderControls
     @Header
     @* Controls *@
     <div style="align-items: center;" class="flex gap-1">
         @* Delete button *@
-        <FlatButton Class="" OnClick="() => OnDeleteClick.Invoke(Object)"
+        <FlatButton Class="" OnClick="() => OnDeleteClick.Invoke(Element)"
             Style="border-radius: 8px; border: 1px solid var(--color-dark);"
             HoverStyle="scale: 1.1; background-color: var(--color-secondary);">
             <img src="src/images/icon-delete.svg" alt="Кнопка: удалить элемент списка" style="height: 8px;">
@@ -23,10 +25,12 @@
 @code {
     [Parameter]
     public string Header { get; set; } = "";
+    [Parameter, EditorRequired]
+    public HtmlElement Element { get; set; } = null!;
     [Parameter]
-    public Action<object?> OnDeleteClick { get; set; } = o => { };
+    public Action<HtmlElement> OnDeleteClick { get; set; } = _ => { };
     [Parameter]
-    public object? Object { get; set; } = null;
+    public Action<HtmlElement> OnElementClick { get; set; } = _ => { };
 
     protected override void OnParametersSet()
     {
