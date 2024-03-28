@@ -1,0 +1,24 @@
+@namespace Blazor_pwa.Pages.Components
+@inherits BaseComponent
+
+<div class="flex flex-col w-100 h-100">
+    <Button OnClick="ReloadAnimation">Предосмотр</Button>
+    <html @key="Guid.NewGuid()">
+        @((MarkupString)MarkupString)
+
+    </html>
+</div>
+
+
+@code {
+    [Parameter, EditorRequired]
+    public Func<string> GetMarkupString { get; set; } = null!;
+
+    private string MarkupString { get; set; } = null!;
+
+    private void ReloadAnimation()
+    {
+        MarkupString = GetMarkupString();
+        StateHasChanged();
+    }
+}
