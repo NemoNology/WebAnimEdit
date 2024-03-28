@@ -1,39 +1,34 @@
 @using Blazor_pwa.Models.Implementations
 @using Blazor_pwa.Models.Interfaces
+@using Blazor_pwa.Models.Enums
 @namespace Blazor_pwa.Pages.Components
 @inherits BaseComponent
 
-<div style="overflow: hidden; @Style" class="flex flex-col gap-3 p-2 @Class">
-    <div style="align-self: center;" class="p-2 text-semibold">Проект:</div>
-    <div class="flex p-2 gap-1">
-        <label for="title_input">Заголовок:</label>
-        <input type="text" @bind="@Project.Title" size="8" class="flex-grow-1">
-    </div>
-    <div class="w-100 flex flex-col gap-2 flex-grow-1">
-        <div style="justify-content: space-around;" class="bg-accent flex p-2 w-100">
-            <Button OnClick="AddDiv">+div</Button>
-            <Button OnClick="AddImg">+img</Button>
-            <Button OnClick="AddAnimation">+anim</Button>
+<div style="overflow: hidden; @Style" class="flex flex-col gap-3 p-2 w-100 @Class">
+    <div class="flex flex-col h-100 w-100 bg-light" style="border: 4px solid var(--color-accent);">
+        <div class="w-100 bg-accent p-2" style="text-align: center;">Элементы</div>
+        <div class="w-100 flex bg-accent p-2" style="justify-content: space-around;">
+            <Button OnClick="() => {
+                var el = HtmlElements.Division;
+                Project.Elements.Add(el);
+                }">+Div</Button>
+            <Button OnClick="() => {
+                var el = HtmlElements.Image;
+                Project.Elements.Add(el);
+                }">+Img</Button>
         </div>
-        <div class="flex flex-col flex-grow-1 w-100 bg-light" style="border: 4px solid var(--color-accent);">
-            <div class="w-100 bg-accent p-2" style="text-align: center;">Элементы</div>
-            <div style="display: flex; flex-direction: column;" class="w-100">
-                @foreach (var el in Project.Elements)
-                {
-                    <ListViewObject Header="@HtmlElementsInfo.GetHtmlElementNameByType(el.Type)" Object="el"
-                        OnDeleteClick="@DeleteElement" Class="w-100 p-3" />
-                }
-            </div>
-        </div>
-        <div class="flex flex-col flex-grow-1 w-100 bg-light"
-            style="border: 4px solid var(--color-accent); overflow: auto;">
-            <div class="w-100 bg-accent p-2" style="text-align: center;">Анимации</div>
-            <div style="display: flex; flex-direction: column;" class="w-100">
-                @foreach (var anim in Project.Animations)
-                {
-                    <ListViewObject Header="@anim.Name" Object="anim" OnDeleteClick="DeleteAnimation" Class="w-100 p-3" />
-                }
-            </div>
+        <div id="project_tree" style="display: flex; flex-direction: column;" class="w-100">
+            @foreach (var el in Project.Elements)
+            {
+                <ListViewObject Header="@HtmlElementsInfo.GetHtmlElementNameByType(el.Type)" Element="el" OnDeleteClick="element => {
+                    if (element is not null && element is HtmlElement)
+                    {
+                        Project.Elements.Remove((HtmlElement)element);
+                        OnElementDelete((HtmlElement)element);
+                        StateHasChanged();
+                    }
+                    }" OnElementClick="el => OnElementClick.Invoke(el)" Class="w-100" />
+            }
         </div>
     </div>
 </div>
@@ -41,37 +36,8 @@
 @code {
     [Parameter, EditorRequired]
     public Project Project { get; set; } = null!;
-
-    void AddDiv()
-    {
-        Project.Elements.Add(new DivElement());
-    }
-
-    void AddImg()
-    {
-        Project.Elements.Add(new ImageElement());
-    }
-
-    void AddAnimation()
-    {
-        Project.Animations.Add(new Animation("animation"));
-    }
-
-    void DeleteElement(object? element)
-    {
-        if (element is HtmlElement && element is not null)
-        {
-            Project.Elements.Remove((HtmlElement)element);
-            StateHasChanged();
-        }
-    }
-
-    void DeleteAnimation(object? animation)
-    {
-        if (animation is Animation && animation is not null)
-        {
-            Project.Animations.Remove((Animation)animation);
-            StateHasChanged();
-        }
-    }
+    [Parameter]
+    public Action<HtmlElement> OnElementDelete { get; set; } = _ => { };
+    [Parameter]
+    public Action<HtmlElement> OnElementClick { get; set; } = _ => { };
 }
