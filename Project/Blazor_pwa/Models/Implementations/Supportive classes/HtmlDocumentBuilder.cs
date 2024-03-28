@@ -31,18 +31,18 @@ namespace Blazor_pwa.Models.Implementations
                     res += $" {key}=\"{value}\"";
             if (element.Style.Count > 0)
             {
-                res += "style=\"";
+                res += " style=\"";
                 foreach ((string key, string value) in element.Style)
                     res += $"{key}: {value}; ";
-                if (element.AnimationStyle is not null)
+                if (element.AnimationStyle.Count > 0)
                     res += $"animation-name: animation{number};";
                 res += "\"";
             }
 
-            return res + "/>";
+            return res + " />";
         }
 
-        public static string BuildProject(Project project)
+        public static string BuildProject(Project project, bool isFullDocument = false)
         {
             var animations = "";
             var elements = "";
@@ -57,20 +57,19 @@ namespace Blazor_pwa.Models.Implementations
                 counter++;
             }
             // Building html with html document tag and head
-            var res = $"<DOCKTYPE html>\n<html lang=\"en\">\n{Head}\n";
+            var res = isFullDocument ? $"<!DOCKTYPE html>\n<html lang=\"en\">\n{Head}\n" : "";
             // Adding animations in style element
             if (animations.Length > 0)
-            {
-                Console.WriteLine($"Animations string: '{animations}'");
-                res += $"<style>\n{animations}\n</style>\n";
-            }
+                res += $"<style>\n{animations}</style>\n";
             // Adding body
             res += "<body>\n";
             // Adding elements in body element
             if (elements.Length > 0)
                 res += $"{elements}";
             // Closing body and html tags
-            res += "</body>\n</html>";
+            res += "</body>";
+            if (isFullDocument)
+                res += "\n</html>";
 
             return res;
         }
