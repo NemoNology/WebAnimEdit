@@ -6,10 +6,10 @@ namespace Blazor_pwa.Models.Implementations
     {
         public static string Head =>
             $@"<head>
-    <meta charset={"UTF-8"}
-    <meta name={"viewport"} content={"width=device-width, initial-scale=1.0"}
-    <meta http-equiv={"X-UA-Compatible"} content={"ie=edge"}
-    <title>Без названия</title>;
+    <meta charset={"UTF-8"}/>
+    <meta name={"viewport"} content={"width=device-width, initial-scale=1.0"}/>
+    <meta http-equiv={"X-UA-Compatible"} content={"ie=edge"}/>
+    <title>Без названия</title>
 </head>";
 
         public static string BuildAnimation(Dictionary<string, string> animation, int number)
