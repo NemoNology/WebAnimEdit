@@ -1,4 +1,5 @@
 using Blazor_pwa.Models.Emums;
+using Blazor_pwa_project.Models.Implementations;
 
 namespace Blazor_pwa.Models.Interfaces
 {
@@ -12,17 +13,17 @@ namespace Blazor_pwa.Models.Interfaces
         /// <summary>
         /// Dictionary of block properties, where property is name and value
         /// </summary>
-        public Dictionary<string, string> Properties { get; private set; }
+        public List<Property> Properties { get; private set; }
 
         /// <summary>
         /// Constructor with type and properties parameters
         /// </summary>
         /// <param name="type">Type of the block</param>
         /// <param name="properties">Initial properties for block. If null, new empty dictionary will be created</param>
-        public BlockOfProperties(BlockOfPropertiesType type, Dictionary<string, string>? properties = null)
+        public BlockOfProperties(BlockOfPropertiesType type, List<Property> properties)
         {
             Type = type;
-            Properties = properties ?? new();
+            Properties = properties;
         }
     }
 }
