@@ -5,20 +5,41 @@ namespace Blazor_pwa_project.Models.Implementations
     public class Property
     {
         /// <summary>
-        /// Type of property
+        /// Name of property. Used for UI display
         /// </summary>
-        public PropertyType Type { get; set; }
+        public string Name { get; init; }
         /// <summary>
-        /// Name of property
+        /// ID/Tag of the property.
+        /// Property is attribute or some parent attribute value, so it need tag 
         /// </summary>
-        public string Name { get; set; }
+        public string Tag { get; init; }
+        /// <summary>
+        /// Parent attribute tag.
+        /// If it is null, property is whole attribute.
+        /// Otherwise - porperty is some value of parent attribute
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// ParentAttributeTag is null => $"{Tag}={Value}"
+        /// ParentAttributeTag is "style" => $"style='{Tag}: {Value};'"
+        /// </code>
+        /// </example>
+        public string? ParentAttributeTag { get; init; }
         public string Value { get; set; }
+        public PropertyValueType ValueType { get; init; }
 
-        public Property(PropertyType type, string name, string value = "")
+        public Property(
+            string name,
+            string tag,
+            string? parentAttributeTag,
+            string value,
+            PropertyValueType valueType)
         {
-            Type = type;
             Name = name;
+            Tag = tag;
+            ParentAttributeTag = parentAttributeTag;
             Value = value;
+            ValueType = valueType;
         }
     }
 }
