@@ -8,12 +8,12 @@ namespace Blazor_pwa.Models.Interfaces
         /// <summary>
         /// Type of the block. Type is used to identify the block
         /// </summary>
-        public BlockOfPropertiesType Type { get; private set; }
+        public BlockOfPropertiesType Type { get; init; }
 
         /// <summary>
         /// Dictionary of block properties, where property is name and value
         /// </summary>
-        public List<Property> Properties { get; private set; }
+        public List<Property> Properties { get; init; }
 
         /// <summary>
         /// Constructor with type and properties parameters
