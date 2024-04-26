@@ -1,7 +1,6 @@
-using Blazor_pwa.Models.Emums;
-using Blazor_pwa_project.Models.Implementations;
+using WebAnimEdit.Models.Enums;
 
-namespace Blazor_pwa.Models.Interfaces
+namespace WebAnimEdit.Models.Implementations
 {
     public class BlockOfProperties
     {
@@ -13,14 +12,14 @@ namespace Blazor_pwa.Models.Interfaces
         /// <summary>
         /// Dictionary of block properties, where property is name and value
         /// </summary>
-        public List<Property> Properties { get; init; }
+        public Property[] Properties { get; init; }
 
         /// <summary>
         /// Constructor with type and properties parameters
         /// </summary>
         /// <param name="type">Type of the block</param>
         /// <param name="properties">Initial properties for block. If null, new empty dictionary will be created</param>
-        public BlockOfProperties(BlockOfPropertiesType type, List<Property> properties)
+        public BlockOfProperties(BlockOfPropertiesType type, Property[] properties)
         {
             Type = type;
             Properties = properties;
