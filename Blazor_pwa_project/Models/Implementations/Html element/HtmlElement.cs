@@ -4,15 +4,14 @@ namespace WebAnimEdit.Models.Implementations
     {
         public string Name { get; set; }
         public string Tag { get; set; }
-        public BlockOfProperties[] BlocksOfProperties { get; init; }
-        public string Text { get; set; } = "";
+        public List<Attribute> Attributes { get; init; }
         public List<HtmlElement> Children { get; init; } = new();
 
-        public HtmlElement(string name, string tag, BlockOfProperties[] blocksOfProperties)
+        public HtmlElement(string name, string tag, List<Attribute> attributes)
         {
             Name = name;
             Tag = tag;
-            BlocksOfProperties = blocksOfProperties;
+            Attributes = attributes;
         }
     }
 }
