@@ -6,7 +6,29 @@
     --color-accent: #dfe0df;
 }
 
-* {
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* TODO: change colors */
+        --color-light: #242124;
+        --color-dark: #fff6f0;
+        --color-primary: #663322;
+        --color-secondary: #312524;
+        --color-accent: #00557e;
+    }
+}
+
+.dark {
+    :root {
+        /* TODO: change colors */
+        --color-light: #242124;
+        --color-dark: #fff6f0;
+        --color-primary: #663322;
+        --color-secondary: #312524;
+        --color-accent: #00557e;
+    }
+}
+
+body * {
     color: var(--color-dark);
     font-family: "Open Sans", sans-serif;
     font-optical-sizing: auto;
@@ -14,6 +36,74 @@
     font-weight: 400;
     font-variation-settings: "wdth" 100;
     box-sizing: border-box;
+    display: flex;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+nav {
+    padding: 8px;
+    background-color: var(--color-primary);
+    gap: 8px;
+}
+
+main {
+    flex-grow: 1;
+}
+
+div,
+div>* {
+    width: max-content;
+    height: max-content;
+}
+
+button {
+    border-radius: 8px;
+    padding: 8px;
+    font-size: medium;
+    border: 1px solid transparent;
+    background-color: var(--color-light);
+    cursor: pointer;
+}
+
+button:hover {
+    border-color: var(--color-dark);
+}
+
+button:active {
+    background-color: var(--color-accent);
+}
+
+button .flat {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+button .flat:hover {
+    text-decoration: underline solid var(--color-dark) 1px;
+}
+
+.content-between {
+    justify-content: space-between;
+}
+
+.slide-panel {
+    background-color: var(--color-secondary);
+    width: 20%;
+    height: 100%;
 }
 
 .p-0 {
@@ -56,11 +146,7 @@
     height: 100%;
 }
 
-.flex {
-    display: flex;
-}
-
-.flex-col {
+.col {
     flex-direction: column;
 }
 
@@ -75,35 +161,6 @@
 
 .text-semibold {
     font-weight: 600;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        /* TODO: change colors */
-        --color-light: #242124;
-        --color-dark: #fff6f0;
-        --color-primary: #663322;
-        --color-secondary: #312524;
-        --color-accent: #00557e;
-    }
-}
-
-html,
-body {
-    height: 100%;
-    margin: 0%;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-}
-
-div,
-div>* {
-    width: max-content;
 }
 
 .bg-primary {
