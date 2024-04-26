@@ -1,49 +1,30 @@
-﻿@using Blazor_pwa.Models.Implementations
-@using Blazor_pwa.Models.Interfaces
-@using Blazor_pwa.Pages.Components
-@page "/"
+﻿@page "/"
 
-<Nav>
-    <Button OnClick="() => {
-        Project = new();
-        SelectedElement = null;
-        }">Новый проект</Button>
-    @* <Button OnClick='async () => {
+<nav>
+    <button type="button">
+        Новый проект
+    </button>
+    <button type="button">
+        Экспорт в файл
+    </button>
+    <button type="button">
+        Вывод в консоль
+    </button>
+</nav>
+<main>
+    @* Project tree *@
+    <div class="slide-panel">
 
-        }'>Экспорт в файл</Button> *@
-    <Button OnClick="() => {
-        Console.Clear();
-        Console.WriteLine(HtmlDocumentBuilder.BuildProject(Project, true));
-        }">Вывод в консоль</Button>
-</Nav>
-<Main>
-    <div class="bg-secondary flex" style="width: 15%;">
-        <ProjectComponentsView Project="@Project" OnElementClick="el => {
-            SelectedElement = el;
-            StateHasChanged();
-            }" OnElementDelete="el => {
-                if (el == SelectedElement)
-                {
-                    SelectedElement = null;
-                    StateHasChanged();
-                }
-            }" />
     </div>
+    @* Canvas - Previewer *@
     <div style="flex-grow: 4;">
-        <Previewer GetMarkupString="() => HtmlDocumentBuilder.BuildProject(Project)" />
+
     </div>
-    <div class="flex flex-col bg-secondary gap-2" style="max-width: 20%;">
-        @if (SelectedElement is not null)
-        {
-            <div>Аттрибуты</div>
-            <DictionaryEditor Dictionary="SelectedElement.Attributes" />
-            <div>Стиль</div>
-            <DictionaryEditor Dictionary="SelectedElement.Style" />
-            <div>Анимация</div>
-            <DictionaryEditor Dictionary="SelectedElement.AnimationStyle" />
-        }
+    @* Properties panel *@
+    <div class="slide-panel">
+
     </div>
-</Main>
+</main>
 
 @code {
     private Project Project { get; set; } = new();
