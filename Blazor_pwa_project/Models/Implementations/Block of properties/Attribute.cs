@@ -2,7 +2,7 @@ using WebAnimEdit.Models.Enums;
 
 namespace WebAnimEdit.Models.Implementations
 {
-    public class Property
+    public class Attribute
     {
         /// <summary>
         /// Name of property. Used for UI display
@@ -25,14 +25,28 @@ namespace WebAnimEdit.Models.Implementations
         /// </code>
         /// </example>
         public string? ParentAttributeTag { get; init; }
+        /// <summary>
+        /// Value of attribute
+        /// </summary>
         public string Value { get; set; }
-        public PropertyValueType ValueType { get; init; }
+        /// <summary>
+        /// Value type of attribute.
+        /// Used for autocompletion
+        /// </summary>
+        public AttributeValueType ValueType { get; init; }
+        /// <summary>
+        /// Returns true if attribute will be convert into text of html-element
+        /// Otherwise - false
+        /// </summary>
+        public bool IsTextAttribute =>
+            string.IsNullOrWhiteSpace(Tag)
+            && string.IsNullOrWhiteSpace(ParentAttributeTag);
 
-        public Property(
+        public Attribute(
             string name,
             string tag,
             string value,
-            PropertyValueType valueType,
+            AttributeValueType valueType,
             string? parentAttributeTag = null)
         {
             Name = name;
