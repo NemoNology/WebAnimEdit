@@ -31,9 +31,9 @@ namespace WebAnimEdit.Models.Implementations
         public Property(
             string name,
             string tag,
-            string? parentAttributeTag,
             string value,
-            PropertyValueType valueType)
+            PropertyValueType valueType,
+            string? parentAttributeTag = null)
         {
             Name = name;
             Tag = tag;
