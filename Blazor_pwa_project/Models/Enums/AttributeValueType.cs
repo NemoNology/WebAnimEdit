@@ -1,10 +1,9 @@
 namespace WebAnimEdit.Models.Enums
 {
-    public enum PropertyValueType
+    public enum AttributeValueType
     {
         None,
         Value,
-        Attribute,
         Style,
         Script,
         Event,
