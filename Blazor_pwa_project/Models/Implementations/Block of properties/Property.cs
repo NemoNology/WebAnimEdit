@@ -1,6 +1,6 @@
-using Blazor_pwa_project.Models.Enums;
+using WebAnimEdit.Models.Enums;
 
-namespace Blazor_pwa_project.Models.Implementations
+namespace WebAnimEdit.Models.Implementations
 {
     public class Property
     {

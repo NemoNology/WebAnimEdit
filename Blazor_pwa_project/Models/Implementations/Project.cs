@@ -1,6 +1,4 @@
-using Blazor_pwa.Models.Interfaces;
-
-namespace Blazor_pwa.Models.Implementations
+namespace WebAnimEdit.Models.Implementations
 {
     public class Project
     {

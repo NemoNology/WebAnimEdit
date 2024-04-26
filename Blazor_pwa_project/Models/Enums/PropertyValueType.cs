@@ -1,4 +1,4 @@
-namespace Blazor_pwa_project.Models.Enums
+namespace WebAnimEdit.Models.Enums
 {
     public enum PropertyValueType
     {

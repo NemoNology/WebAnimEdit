@@ -1,4 +1,4 @@
-namespace Blazor_pwa.Models.Emums
+namespace WebAnimEdit.Models.Enums
 {
     public enum BlockOfPropertiesType
     {
