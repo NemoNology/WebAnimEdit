@@ -102,7 +102,8 @@ button .flat:hover {
 
 .slide-panel {
     background-color: var(--color-secondary);
-    width: 20%;
+    max-width: 20%;
+    overflow: auto;
     height: 100%;
 }
 
