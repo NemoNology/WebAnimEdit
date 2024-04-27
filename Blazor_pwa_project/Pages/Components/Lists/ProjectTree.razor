@@ -1,0 +1,29 @@
+@namespace WebAnimEdit.Pages.Components
+@using System.Collections
+@inherits WebAnimEdit.Pages.Components.BaseComponent
+
+<TreeViewObject Element="@Root" OnDeleteButtonPressed="() => {}" Level="0" OnElementPressed="OnElementPressed">
+    @{
+        Stack<(HtmlElement el, HtmlElement parent, int lvl)> buffer = new(Root.Children.Count);
+        foreach (HtmlElement el in Root.Children)
+            buffer.Push((el, Root, 1));
+        while (buffer.Count > 0)
+        {
+            var (el, parent, lvl) = buffer.Pop();
+            <TreeViewObject Element="@el" Level="@lvl" OnDeleteButtonPressed="() => {
+                    parent.Children.Remove(el); StateHasChanged(); }" OnElementPressed="el => { 
+                    OnElementPressed.Invoke(el); }">
+            </TreeViewObject>
+            foreach (HtmlElement elc in el.Children)
+                buffer.Push((elc, el, lvl + 1));
+        }
+    }
+</TreeViewObject>
+
+@code {
+    [Parameter, EditorRequired]
+    public HtmlElement Root { get; set; } = null!;
+    [Parameter, EditorRequired]
+    public Action<HtmlElement> OnElementPressed { get; set; } = null!;
+    public void UpdateState() => StateHasChanged();
+}
