@@ -1,0 +1,37 @@
+@namespace WebAnimEdit.Pages.Components
+@inherits WebAnimEdit.Pages.Components.BaseComponent
+
+<div style="margin-left: calc(@Level * 10px);" class="col" @onclick="() => {OnElementPressed.Invoke(Element);}">
+    @* Element not children *@
+    <div style="justify-content: space-between;">
+        <div style="align-items: center;">
+            @* Button of reveal/hide children *@
+            <button type="button" @onclick="() => {
+                _isCollapsed = !_isCollapsed;
+                StateHasChanged();
+                }">v</button>
+            @* Name of element *@
+            @Element.Name (@Element.Tag);
+        </div>
+        @* Delete button *@
+        <button type="button" @onclick="OnDeleteButtonPressed">x</button>
+    </div>
+    @* Children *@
+    <div style="@_displayValue">
+        @ChildContent
+    </div>
+</div>
+
+
+@code {
+    [Parameter, EditorRequired]
+    public HtmlElement Element { get; set; } = null!;
+    [Parameter, EditorRequired]
+    public Action<HtmlElement> OnElementPressed { get; set; } = null!;
+    [Parameter, EditorRequired]
+    public Action OnDeleteButtonPressed { get; set; } = null!;
+    [Parameter, EditorRequired]
+    public int Level { get; set; }
+    private bool _isCollapsed = true;
+    private string _displayValue => _isCollapsed ? "display: none;" : "";
+}
