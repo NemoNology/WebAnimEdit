@@ -1,4 +1,5 @@
-﻿@page "/"
+﻿@using Attribute = WebAnimEdit.Models.Implementations.Attribute
+@page "/"
 
 <nav>
     <button type="button">
@@ -13,8 +14,15 @@
 </nav>
 <main>
     @* Project tree *@
-    <div class="slide-panel">
-
+    <div class="slide-panel col">
+        <div>
+            <button type="button"
+                @onclick="() => { Root.Children[1].Children.Add(HtmlElements.Division); _projectTreeRef.UpdateState(); }">+div</button>
+            <button type="button"
+                @onclick="() => { Root.Children[1].Children.Add(HtmlElements.Image); _projectTreeRef.UpdateState(); }">+img</button>
+        </div>
+        <ProjectTree @ref="@_projectTreeRef" Root="Root"
+            OnElementPressed="el => { SelectedElement = el; StateHasChanged(); }" />
     </div>
     @* Canvas - Previewer *@
     <div style="flex-grow: 4;">
@@ -22,11 +30,33 @@
     </div>
     @* Properties panel *@
     <div class="slide-panel">
-
+        @if (SelectedElement is not null)
+        {
+            <div>
+                Name:
+                <input type="text" value="@SelectedElement.Name"
+                    @onchange="e => {SelectedElement.Name = (string)e.Value!; StateHasChanged();}" />
+                Tag:
+                <input type="text" value="@SelectedElement.Tag"
+                    @onchange="e => {SelectedElement.Tag = (string)e.Value!; StateHasChanged();}" />
+            </div>
+            Console.WriteLine($"Attr-s count: {SelectedElement.Attributes.Count}");
+            <div class="col h-100">
+                @foreach (Attribute attr in SelectedElement.Attributes)
+                {
+                    Console.WriteLine($"{attr.Tag} ({attr.ParentAttributeTag}): {attr.Value}");
+                    <div>
+                        @attr.Name:
+                        <input type="text" @onchange="e => {attr.Value = (string)e.Value!; StateHasChanged();}" />
+                    </div>
+                }
+            </div>
+        }
     </div>
 </main>
 
 @code {
-    private Project Project { get; set; } = new();
+    private HtmlElement Root { get; set; } = HtmlElements.Html;
     private HtmlElement? SelectedElement { get; set; } = null;
+    private ProjectTree _projectTreeRef;
 }
