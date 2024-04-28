@@ -5,7 +5,7 @@ namespace WebAnimEdit.Models.Enums
 {
     public static class HtmlElements
     {
-        public static List<Attribute> DivisionAttributes =>
+        public static HashSet<Attribute> DivisionAttributes =>
             new()
             {
                 Attributes.Text,
