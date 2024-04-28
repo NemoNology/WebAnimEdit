@@ -1,29 +1,28 @@
 @namespace WebAnimEdit.Pages.Components
 @using System.Collections
+@using System.ComponentModel
 @inherits WebAnimEdit.Pages.Components.BaseComponent
 
-<TreeViewObject Element="@Root" OnDeleteButtonPressed="() => {}" Level="0" OnElementPressed="OnElementPressed">
-    @{
-        Stack<(HtmlElement el, HtmlElement parent, int lvl)> buffer = new(Root.Children.Count);
-        foreach (HtmlElement el in Root.Children)
-            buffer.Push((el, Root, 1));
-        while (buffer.Count > 0)
-        {
-            var (el, parent, lvl) = buffer.Pop();
-            <TreeViewObject Element="@el" Level="@lvl" OnDeleteButtonPressed="() => {
-                    parent.Children.Remove(el); StateHasChanged(); }" OnElementPressed="el => { 
-                    OnElementPressed.Invoke(el); }">
-            </TreeViewObject>
-            foreach (HtmlElement elc in el.Children)
-                buffer.Push((elc, el, lvl + 1));
-        }
-    }
-</TreeViewObject>
+<MudTreeView @bind-SelectedValue="@SelectedElement" Dense="true" Hover="true" Items="@_treeItems">
+    <ItemTemplate>
+        <MudTreeViewItem Value="@context" Items="@context.Children" />
+    </ItemTemplate>
+</MudTreeView>
 
 @code {
-    [Parameter, EditorRequired]
+    private HashSet<HtmlElement> _treeItems = new();
+
+    [Parameter, EditorRequired, Bindable(true, BindingDirection.TwoWay)]
     public HtmlElement Root { get; set; } = null!;
-    [Parameter, EditorRequired]
-    public Action<HtmlElement> OnElementPressed { get; set; } = null!;
-    public void UpdateState() => StateHasChanged();
+    [Parameter, Bindable(true, BindingDirection.TwoWay)]
+    public HtmlElement SelectedElement { get; set; } = null!;
+    [Parameter]
+    public EventCallback<HtmlElement> RootChanged { get; set; }
+    [Parameter]
+    public EventCallback<HtmlElement?> SelectedElementChanged { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        _treeItems.Add(Root);
+    }
 }
