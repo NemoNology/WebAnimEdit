@@ -13,6 +13,7 @@ namespace WebAnimEdit.Models.Implementations
             Tag = tag;
             Attributes = attributes;
         }
+
         public override string ToString() => $"{Name} ({Tag})";
     }
 }
