@@ -175,6 +175,13 @@ namespace WebAnimEdit.Models.Enums
             "URL-источник изображения",
             "src",
             "",
-            AttributeValueType.None);
+            AttributeValueType.None
+        );
+        public static Attribute InputType => new(
+            "Тип поля ввода",
+            "type",
+            "text",
+            AttributeValueType.Value
+        );
     }
 }
