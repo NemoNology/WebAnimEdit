@@ -97,5 +97,19 @@ namespace WebAnimEdit.Models.Enums
             new() {
                 Attributes.Script
             });
+        public static HtmlElement Input => new(
+            "Поле ввода",
+            "input",
+            DivisionAttributes.Concat(new HashSet<Attribute>() {
+                Attributes.InputType,
+                }).ToHashSet());
+
+        public static HashSet<HtmlElement> GeneralElements => new()
+        {
+            Division,
+            Image,
+            Button,
+            Input,
+        };
     }
 }
