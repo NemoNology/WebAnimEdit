@@ -55,5 +55,8 @@ namespace WebAnimEdit.Models.Implementations
             Value = value;
             ValueType = valueType;
         }
+
+        public override string ToString()
+        => $"{(string.IsNullOrWhiteSpace(Tag) ? "Empty" : Tag)}: {Value} {(ParentAttributeTag is null ? "" : $"({ParentAttributeTag})")}";
     }
 }
