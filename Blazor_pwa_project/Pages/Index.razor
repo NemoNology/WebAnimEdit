@@ -1,16 +1,160 @@
-﻿@page "/"
+﻿@using Attribute = WebAnimEdit.Models.Implementations.Attribute;
+@using MudBlazor.Extensions
+@using WebAnimEdit.Pages.Components
+@namespace WebAnimEdit.Pages
+@page "/"
+@inject IDialogService DialogService
 
-<MudAppBar Elevation="0" Dense="true" Color="@Color.Transparent" Class="border-b">
+<MudAppBar Elevation="0" Dense Color="@Color.Transparent" Class="border-b">
     <MudSpacer />
-    <MudTooltip Text="GitHub репозиторий" Color="@Color.Default">
+    <MudTooltip Text="GitHub репозиторий" Color="@Color.Default" Delay="100">
         <MudLink Href="https://github.com/NemoNology/WebAnimEdit" Color="@Color.Default">
             <MudIcon Icon="@Icons.Custom.Brands.GitHub" Title="GitHub" />
         </MudLink>
     </MudTooltip>
 </MudAppBar>
 @* Project elements view as tree viewer & Properties editor *@
-<MudDrawer Anchor="@Anchor.Left" Open="true" Class="mud-height-full" ClipMode="@DrawerClipMode.Docked">
-    @* Project tree *@
-
-    @* Properties editor *@
+<MudDrawer Anchor="@Anchor.Left" Open Class="border-r pa-1" ClipMode="@DrawerClipMode.Docked"
+    Breakpoint="@Breakpoint.Sm">
+    <MudStack Spacing="2" Class="flex-1">
+        @* Project tree *@
+        <MudPaper Class="border flex-1" Elevation="2">
+            <MudButtonGroup Variant="@Variant.Text" Class="ma-1" Size="@Size.Small">
+                <MudButton Size="@Size.Small" Class="pa-1" OnClick="@(async _ => {
+                    var result = await DialogService.Show<CreateNewHtmlElementDialog>(
+                            "Добавить новый элемент",
+                            new DialogOptions() {
+                                CloseButton = true,
+                                CloseOnEscapeKey = true,
+                                MaxWidth = MaxWidth.Large
+                            }
+                        ).Result;
+                        if (!result.Canceled && result is not null)
+                        {
+                            if (_selectedElement is null)
+                                _root.Children.Add((result.Data as HtmlElement)!);
+                            else
+                                _selectedElement.Children.Add((result.Data as HtmlElement)!);
+                        }
+                    })">
+                    <MudText Typo="@Typo.caption">Добавить элемент</MudText>
+                </MudButton>
+                <MudMenu Icon="@Icons.Material.Rounded.ArrowDropDown" Dense AnchorOrigin="@Origin.BottomLeft">
+                    @* TODO: Add blocks with elements, like 'General', 'Media', 'Specified';
+                    Add alghoritm to visit that blocks and add elements to menu with adding logic;
+                    Also add possibility to create custom element; *@
+                    <MudMenuItem>
+                        <MudMenu Label="Основные" ActivationEvent="@MouseEvent.MouseOver" Dense
+                            StartIcon="@Icons.Material.Rounded.GridView" AnchorOrigin="@Origin.TopRight">
+                            <MudMenuItem>
+                                Lol
+                            </MudMenuItem>
+                            <MudMenuItem>
+                                Lol
+                            </MudMenuItem>
+                        </MudMenu>
+                    </MudMenuItem>
+                    <MudDivider />
+                    <MudMenuItem>
+                        <MudStack Justify="@Justify.SpaceBetween" Row AlignItems="@AlignItems.Center" Spacing="0">
+                            <MudText>
+                                Создать
+                            </MudText>
+                            <MudIconButton Icon="@Icons.Material.Rounded.Add" />
+                        </MudStack>
+                    </MudMenuItem>
+                </MudMenu>
+            </MudButtonGroup>
+            <MudPaper Elevation="0" Class="border-t ">
+                <MudTreeView @bind-SelectedValue="@_selectedElement" Dense Hover Items="@_treeItems" Class="ma-1">
+                    <ItemTemplate>
+                        <MudTreeViewItem Value="@context" Items="@context.Children">
+                            <BodyContent Context="bodyContext">
+                                <div class="d-flex flex-1">
+                                    <MudText>@bodyContext.Value</MudText>
+                                    <MudSpacer />
+                                    @if (!ReferenceEquals(context!, _root))
+                                    {
+                                        <MudIconButton Icon="@Icons.Material.Rounded.Close" Size="@Size.Small" OnClick="@(_ => {
+                                _root.DeepRemoveFirstHtmlElement(context!);
+                             })" />
+                                    }
+                                </div>
+                            </BodyContent>
+                        </MudTreeViewItem>
+                    </ItemTemplate>
+                </MudTreeView>
+            </MudPaper>
+        </MudPaper>
+        @* Properties editor *@
+        <MudCollapse Expanded="@(_selectedElement is not null)">
+            <MudPaper Class="border" Style="flex-grow: 2;" Elevation="2">
+                @if (_selectedElement is not null)
+                {
+                    <MudTextField @bind-Value="@(_selectedElement.Name)" Variant="@Variant.Text" Label="Имя элемента" />
+                    <MudTextField @bind-Value="@(_selectedElement.Tag)" Variant="@Variant.Text" Label="Тег элемента" />
+                    foreach (Attribute attribute in _selectedElement.Attributes)
+                    {
+                        <MudStack Row>
+                            <MudTextField @bind-Value="@(attribute.Value)" Variant="@Variant.Text"
+                                Label="@($"{attribute.Name} ({attribute.Tag})")" />
+                            <MudIconButton Icon="@Icons.Material.Rounded.Delete" Size="@Size.Small" OnClick="@(_ => 
+                                _selectedElement.Attributes.Remove(attribute))" />
+                        </MudStack>
+                    }
+                    <MudButton StartIcon="@Icons.Material.Rounded.Add" OnClick="@(async _ => {
+                        var result = await DialogService.Show<CreateNewAttributeDialog>(
+                            "Добавить новый атрибут",
+                            new DialogOptions() {
+                                CloseButton = true,
+                                CloseOnEscapeKey = true,
+                                MaxWidth = MaxWidth.Large
+                            }
+                        ).Result;
+                        if (!result.Canceled && result is not null)
+                            _selectedElement.Attributes.Add((result.Data as Attribute)!);
+                        })">Добавить атрибут</MudButton>
+                }
+            </MudPaper>
+        </MudCollapse>
+    </MudStack>
 </MudDrawer>
+@* Project previewer and animation controller *@
+<MudStack>
+    @* Previewer update button *@
+    <MudButton EndIcon="@Icons.Material.Rounded.PlayArrow" OnClick="@(_ => {
+        var res = _root.ToHtml();
+        Console.Clear();
+        Console.WriteLine(res);
+        _parsedDocumentString = res;
+        })">
+        <MudText>Предпросмотр</MudText>
+    </MudButton>
+    @* Previewer *@
+    @* @key="Guid.NewGuid()" *@
+    <MudPaper Elevation="0" Class="ma-2 border rounded-0 flex-1" Style="align-self: center;">
+        @((MarkupString)_parsedDocumentString)
+    </MudPaper>
+    @* Animation controller *@
+    <MudPaper Elevation="0" Class="border-t rounded-0 flex-1">
+        @* Playback slider *@
+        <MudStack Spacing="2" Class="ma-2">
+            <MudStack Row Spacing="2">
+                <MudSlider Value="0f" />
+                <MudText>0 сек</MudText>
+            </MudStack>
+        </MudStack>
+    </MudPaper>
+</MudStack>
+
+@code {
+    private string _parsedDocumentString = string.Empty;
+    private HashSet<HtmlElement> _treeItems = new();
+    private HtmlElement _root = new("Документ", "html", new());
+    private HtmlElement? _selectedElement = null;
+
+    protected override void OnParametersSet()
+    {
+        _treeItems.Add(_root);
+    }
+}
