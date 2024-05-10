@@ -1,0 +1,22 @@
+@namespace WebAnimEdit.Pages.Components
+@using Attribute = WebAnimEdit.Models.Implementations.Attribute;
+
+<MudDialog>
+    <DialogContent>
+        <MudTextField Label="Имя элемента" @bind-Value="@(_name)" Variant="@Variant.Text" Required />
+        <MudTextField Label="Тег элемента" @bind-Value="@(_tag)" Variant="@Variant.Text" Required />
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="@(e => MudDialog.Cancel())">Отмена</MudButton>
+        <MudButton Color="Color.Primary" OnClick="@(e => MudDialog.Close(new HtmlElement(_name, _tag, new())))">Добавить
+        </MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code
+{
+    string _name = "";
+    string _tag = "";
+    [CascadingParameter]
+    MudDialogInstance MudDialog { get; set; } = null!;
+}
