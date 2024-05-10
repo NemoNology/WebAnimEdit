@@ -107,98 +107,12 @@ button .flat:hover {
     height: 100%;
 }
 
-.p-0 {
-    padding: 0px;
-}
-
-.p-2 {
-    padding: 4px;
-}
-
-.p-3 {
-    padding: 8px;
-}
-
-.m-2 {
-    margin: 4px;
-}
-
-.m-3 {
-    margin: 8px;
-}
-
-.gap-1 {
-    gap: 2px;
-}
-
-.gap-2 {
-    gap: 8px;
-}
-
-.gap-3 {
-    gap: 8px;
-}
-
 .w-100 {
     width: 100%;
 }
 
 .h-100 {
     height: 100%;
-}
-
-.col {
-    flex-direction: column;
-}
-
-.text-light {
-    font-weight: 300;
-}
-
-.text-semiconsidered {
-    font-variation-settings:
-        "wdth" 87.5;
-}
-
-.text-semibold {
-    font-weight: 600;
-}
-
-.bg-primary {
-    background-color: var(--color-primary);
-
-}
-
-.bg-secondary {
-    background-color: var(--color-secondary);
-}
-
-.bg-light {
-    background-color: var(--color-light);
-}
-
-.bg-dark {
-    background-color: var(--color-dark);
-}
-
-.bg-accent {
-    background-color: var(--color-accent);
-}
-
-.color-light {
-    color: var(--color-light);
-}
-
-.color-dark {
-    color: var(--color-dark);
-}
-
-.flex-grow-1 {
-    flex-grow: 1;
-}
-
-.filter-invert {
-    filter: invert();
 }
 
 #blazor-error-ui {
