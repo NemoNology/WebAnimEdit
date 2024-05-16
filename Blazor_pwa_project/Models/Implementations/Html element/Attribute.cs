@@ -7,12 +7,12 @@ namespace WebAnimEdit.Models.Implementations
         /// <summary>
         /// Name of property. Used for UI display
         /// </summary>
-        public string Name { get; init; }
+        public string Name { get; set; }
         /// <summary>
         /// ID/Tag of the property.
         /// Property is attribute or some parent attribute value, so it need tag 
         /// </summary>
-        public string Tag { get; init; }
+        public string Tag { get; set; }
         /// <summary>
         /// Parent attribute tag.
         /// If it is null, property is whole attribute.
@@ -24,7 +24,7 @@ namespace WebAnimEdit.Models.Implementations
         /// ParentAttributeTag is "style" => $"style='{Tag}: {Value};'"
         /// </code>
         /// </example>
-        public string? ParentAttributeTag { get; init; }
+        public string ParentAttributeTag { get; set; }
         /// <summary>
         /// Value of attribute
         /// </summary>
@@ -33,7 +33,8 @@ namespace WebAnimEdit.Models.Implementations
         /// Value type of attribute.
         /// Used for autocompletion
         /// </summary>
-        public AttributeValueType ValueType { get; init; }
+        public AttributeValueType ValueType { get; set; }
+
         /// <summary>
         /// Returns true if attribute will be convert into text of html-element
         /// Otherwise - false
@@ -43,11 +44,11 @@ namespace WebAnimEdit.Models.Implementations
             && string.IsNullOrWhiteSpace(ParentAttributeTag);
 
         public Attribute(
-            string name,
-            string tag,
-            string value,
-            AttributeValueType valueType,
-            string? parentAttributeTag = null)
+            string name = "",
+            string tag = "",
+            string value = "",
+            AttributeValueType valueType = AttributeValueType.None,
+            string parentAttributeTag = "")
         {
             Name = name;
             Tag = tag;
