@@ -5,7 +5,6 @@ namespace WebAnimEdit.Models.Enums
     public static class Attributes
     {
         public const string STYLEATTRIBUTETAG = "style";
-        public const string ANIMATIONSTYLEATTRIBUTETAG = "to";
 
         public static Attribute Text => new(
             "Текст",
@@ -40,13 +39,13 @@ namespace WebAnimEdit.Models.Enums
             "Цвет шрифта",
             "color",
             "black",
-            AttributeValueType.Value,
+            AttributeValueType.Color,
             STYLEATTRIBUTETAG);
         public static Attribute BackgroundColor => new(
             "Цвет заднего фона",
             "background-color",
             "unset",
-            AttributeValueType.Value,
+            AttributeValueType.Color,
             STYLEATTRIBUTETAG);
         public static Attribute Padding => new(
             "Padding",
@@ -70,7 +69,7 @@ namespace WebAnimEdit.Models.Enums
             "Цвет обводки",
             "border-color",
             "unset",
-            AttributeValueType.Value,
+            AttributeValueType.Color,
             STYLEATTRIBUTETAG);
         public static Attribute BorderStyle => new(
             "Стиль обводки",
@@ -136,11 +135,6 @@ namespace WebAnimEdit.Models.Enums
             STYLEATTRIBUTETAG,
             "",
             AttributeValueType.Style);
-        public static Attribute AnimationStyle => new(
-            "Стиль анимации",
-            ANIMATIONSTYLEATTRIBUTETAG,
-            "",
-            AttributeValueType.Style);
         public static Attribute OnClick => new(
             "Обработчик события клика",
             "onclick",
@@ -182,6 +176,48 @@ namespace WebAnimEdit.Models.Enums
             "type",
             "text",
             AttributeValueType.Value
+        );
+        public static Attribute ID => new(
+            "Идентификатор",
+            "id",
+            "",
+            AttributeValueType.None
+        );
+        public static Attribute Name => new(
+            "Имя",
+            "name",
+            "",
+            AttributeValueType.None
+        );
+        public static Attribute Max => new(
+            "Максимальное значение",
+            "max",
+            "5",
+            AttributeValueType.None
+        );
+        public static Attribute Min => new(
+            "Минимальное значение",
+            "min",
+            "1",
+            AttributeValueType.None
+        );
+        public static Attribute Step => new(
+            "Шаг приращения значения",
+            "step",
+            "1",
+            AttributeValueType.None
+        );
+        public static Attribute Value => new(
+            "Значение",
+            "value",
+            "1",
+            AttributeValueType.None
+        );
+        public static Attribute AlternativeText => new(
+            "Альтернативный текст",
+            "alt",
+            "текст",
+            AttributeValueType.None
         );
     }
 }
