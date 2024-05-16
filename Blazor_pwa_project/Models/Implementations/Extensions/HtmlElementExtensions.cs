@@ -4,7 +4,7 @@ using MudBlazor;
 
 namespace WebAnimEdit.Models.Implementations
 {
-    public static class HtmlElementExtentions
+    public static class HtmlElementExtensions
     {
         /// <summary>
         /// Remove first html element from html element children deeply, searching in all children 
@@ -43,12 +43,15 @@ namespace WebAnimEdit.Models.Implementations
             string attributeTag,
             string newAttributeValue)
         {
-            foreach (var attribute in element.Attributes)
+            foreach (var block in element.BlocksOfAttributes)
             {
-                if (attribute.Tag == attributeTag)
+                foreach (var attribute in block.Attributes)
                 {
-                    attribute.Value = newAttributeValue;
-                    return element;
+                    if (attribute.Tag == attributeTag)
+                    {
+                        attribute.Value = newAttributeValue;
+                        return element;
+                    }
                 }
             }
 
@@ -74,35 +77,35 @@ namespace WebAnimEdit.Models.Implementations
         {
             doc ??= new();
             var el = doc.CreateElement(element.Tag);
-            foreach (var attribute in element.Attributes)
-            {
-                bool hasParrentAttribute = !string.IsNullOrWhiteSpace(attribute.ParentAttributeTag);
-                XmlAttribute attrBuffer;
-                if (!hasParrentAttribute && string.IsNullOrWhiteSpace(attribute.Tag))
-                {
-                    el.InnerText = attribute.Value;
-                    continue;
-                }
-                else if (hasParrentAttribute)
-                {
-                    attrBuffer = (el.Attributes.GetNamedItem(attribute.ParentAttributeTag!) as XmlAttribute)!;
-                    if (attrBuffer is null)
-                    {
-                        attrBuffer = doc.CreateAttribute(attribute.ParentAttributeTag!);
-                        attrBuffer.Value = $"{attribute.Tag}: {attribute.Value};";
-                    }
-                    else
-                    {
-                        attrBuffer.Value += $" {attribute.Tag}: {attribute.Value};";
-                    }
-                }
-                else
-                {
-                    attrBuffer = doc.CreateAttribute(attribute.Tag);
-                    attrBuffer.Value = attribute.Value;
-                }
-                el.Attributes.Append(attrBuffer);
-            }
+            // foreach (var attribute in element.Attributes)
+            // {
+            //     bool hasParrentAttribute = !string.IsNullOrWhiteSpace(attribute.ParentAttributeTag);
+            //     XmlAttribute attrBuffer;
+            //     if (!hasParrentAttribute && string.IsNullOrWhiteSpace(attribute.Tag))
+            //     {
+            //         el.InnerText = attribute.Value;
+            //         continue;
+            //     }
+            //     else if (hasParrentAttribute)
+            //     {
+            //         attrBuffer = (el.Attributes.GetNamedItem(attribute.ParentAttributeTag!) as XmlAttribute)!;
+            //         if (attrBuffer is null)
+            //         {
+            //             attrBuffer = doc.CreateAttribute(attribute.ParentAttributeTag!);
+            //             attrBuffer.Value = $"{attribute.Tag}: {attribute.Value};";
+            //         }
+            //         else
+            //         {
+            //             attrBuffer.Value += $" {attribute.Tag}: {attribute.Value};";
+            //         }
+            //     }
+            //     else
+            //     {
+            //         attrBuffer = doc.CreateAttribute(attribute.Tag);
+            //         attrBuffer.Value = attribute.Value;
+            //     }
+            //     el.Attributes.Append(attrBuffer);
+            // }
             foreach (var child in element.Children)
                 el.AppendChild(child.ToXml(doc));
 
