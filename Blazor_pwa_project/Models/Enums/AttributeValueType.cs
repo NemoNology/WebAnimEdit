@@ -7,5 +7,6 @@ namespace WebAnimEdit.Models.Enums
         Style,
         Script,
         Event,
+        Color,
     }
 }
