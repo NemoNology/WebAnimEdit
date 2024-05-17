@@ -1,7 +1,5 @@
 ﻿@using Attribute = WebAnimEdit.Models.Implementations.Attribute;
 @using MudBlazor.Extensions
-@using WebAnimEdit.Pages.Components
-@using WebAnimEdit.Models.Implementations
 @namespace WebAnimEdit.Pages
 @page "/"
 @inject IDialogService DialogService
@@ -24,20 +22,12 @@
             <MudButtonGroup Variant="@Variant.Text" Class="ma-1" Size="@Size.Small">
                 <MudButton Size="@Size.Small" Class="pa-1" OnClick="@(async _ => {
                     var result = await DialogService.Show<CreateNewHtmlElementDialog>(
-                            "Добавить новый элемент",
-                            new DialogOptions() {
-                                CloseButton = true,
-                                CloseOnEscapeKey = true,
-                                MaxWidth = MaxWidth.Large
-                            }
-                        ).Result;
-                        if (!result.Canceled && result is not null)
-                        {
-                            if (_selectedElement is null)
-                                _root.Children.Add((result.Data as HtmlElement)!);
-                            else
-                                _selectedElement.Children.Add((result.Data as HtmlElement)!);
-                        }
+                        "Добавить новый элемент", new DialogOptions() {
+                                CloseButton=true, CloseOnEscapeKey=true,
+                                MaxWidth=MaxWidth.Large
+                    }).Result; if (!result.Canceled && result is not null) { if
+                    (_selectedElement is null) _root.Children.Add((result.Data as HtmlElement)!); else
+                    _selectedElement.Children.Add((result.Data as HtmlElement)!); } 
                     })">
                     <MudText Typo="@Typo.caption">Добавить элемент</MudText>
                 </MudButton>
@@ -77,9 +67,9 @@
                                     <MudSpacer />
                                     @if (!ReferenceEquals(context!, _root))
                                     {
-                                            <MudIconButton Icon="@Icons.Material.Rounded.Close" Size="@Size.Small" OnClick="@(_ => {
-                                _root.DeepRemoveFirstHtmlElement(context!);
-                             })" />
+                                        <MudIconButton Icon="@Icons.Material.Rounded.Close" Size="@Size.Small" OnClick="@(_ => {
+                _root.DeepRemoveFirstHtmlElement(context!);
+                })" />
                                     }
                                 </div>
                             </BodyContent>
@@ -90,29 +80,29 @@
         </MudPaper>
         @* Properties editor *@
         <MudCollapse Expanded="@(_selectedElement is not null)">
-            <MudPaper Class="border" Style="flex-grow: 2;" Elevation="2">
+            <MudPaper Class=" border" Style="flex-grow: 2;" Elevation="2">
                 @if (_selectedElement is not null)
                 {
-                        <MudTabs @ref="@_tabs" MinimumTabWidth="20px" Position="@Position.Left" Border>
-                            <MudTabPanel Icon="@Icons.Material.Filled.Settings" ToolTip="Свойства">
-                                <MudStack Spacing="2">
-                                    <MudTextField @bind-Value="@(_selectedElement.Name)" Variant="@Variant.Text"
-                                        Label="Имя элемента" />
-                                    <MudTextField @bind-Value="@(_selectedElement.Tag)" Variant="@Variant.Text"
-                                        Label="Тег элемента" />
-                                </MudStack>
-                            </MudTabPanel>
+                    <MudTabs @ref="@_tabs" MinimumTabWidth="20px" Position="@Position.Left" Border>
+                        <MudTabPanel Icon="@Icons.Material.Filled.Settings" ToolTip="Свойства">
+                            <MudStack Spacing="2">
+                                <MudTextField @bind-Value="@(_selectedElement.Name)" Variant="@Variant.Text"
+                                    Label="Имя элемента" />
+                                <MudTextField @bind-Value="@(_selectedElement.Tag)" Variant="@Variant.Text"
+                                    Label="Тег элемента" />
+                            </MudStack>
+                        </MudTabPanel>
                         @foreach (var block in _selectedElement.BlocksOfAttributes)
                         {
-                                    <MudTabPanel Icon="@block.GetIcon()" ToolTip="@block.GetToolTip()">
-                                        <MudStack Spacing="2">
+                            <MudTabPanel Icon="@block.GetIcon()" ToolTip="@block.GetToolTip()">
+                                <MudStack Spacing="2">
                                     @foreach (var attr in block.Attributes)
                                     {
-                                                    <MudStack Row>
+                                        <MudStack Row>
                                             @if (attr.ValueType == AttributeValueType.Color)
                                             {
-                                                                <MudColorPicker ValueChanged="@(value => {attr.Value = value.Value;})"
-                                                                    DisableToolbar="false" Label="@attr.Name" />
+                                                <MudColorPicker ValueChanged="@(value => {attr.Value = value.Value;})"
+                                                    DisableToolbar="false" Label="@attr.Name" />
                                             }
                                             else if (attr.ValueType == AttributeValueType.Event)
                                             {
@@ -120,32 +110,32 @@
                                             }
                                             else
                                             {
-                                                                <MudTextField @bind-Value="@attr.Value" Variant="@Variant.Text" Label="@attr.Name" />
+                                                <MudTextField @bind-Value="@attr.Value" Variant="@Variant.Text" Label="@attr.Name" />
                                             }
-                                                        <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Filled.Delete" OnClick="@(_ => {
-                                                _selectedElement.RemoveAttribute(attr);
-                                                })" />
-                                                    </MudStack>
-                                    }
+                                            <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Filled.Delete" OnClick="@(_ => {
+            _selectedElement.RemoveAttribute(attr);
+            })" />
                                         </MudStack>
-                                    </MudTabPanel>
-                        }
-                            <MudTabPanel BadgeColor="@Color.Primary" Icon="@Icons.Material.Rounded.Add"
-                                ToolTip="Добавить атрибут" OnClick="@(async _ => {
-                            var result = await DialogService.Show<CreateNewAttributeDialog>(
-                            "Добавить новый атрибут",
-                            new DialogOptions() {
-                                CloseButton = true,
-                                CloseOnEscapeKey = true,
-                                MaxWidth = MaxWidth.Large
-                            }
-                            ).Result;
-                            if (!result.Canceled && result is not null)
-                                _selectedElement.BlocksOfAttributes.Last().Attributes.Add((result.Data as Attribute)!);
-                            _tabs.ActivatePanel(_selectedElement.BlocksOfAttributes.Count);
-                            })">
+                                    }
+                                </MudStack>
                             </MudTabPanel>
-                        </MudTabs>
+                        }
+                        <MudTabPanel BadgeColor="@Color.Primary" Icon="@Icons.Material.Rounded.Add"
+                            ToolTip="Добавить атрибут" OnClick="@(async _ => {
+            var result = await DialogService.Show<CreateNewAttributeDialog>(
+            "Добавить новый атрибут",
+            new DialogOptions() {
+            CloseButton = true,
+            CloseOnEscapeKey = true,
+            MaxWidth = MaxWidth.Large
+            }
+            ).Result;
+            if (!result.Canceled && result is not null)
+            _selectedElement.BlocksOfAttributes.Last().Attributes.Add((result.Data as Attribute)!);
+            _tabs.ActivatePanel(_selectedElement.BlocksOfAttributes.Count);
+            })">
+                        </MudTabPanel>
+                    </MudTabs>
                 }
             </MudPaper>
         </MudCollapse>
@@ -181,20 +171,6 @@
         </MudStack>
     </MudPaper>
 </MudStack>
-
-<script>
-    function pauseAllAnimations() {
-        document.getAnimations().forEach(anim => {
-            anim.pause();
-        });
-    }
-
-    function setCurrentTimeForAnimations(ms) {
-        document.getAnimations().forEach(anim => {
-            anim.currentTime = ms;
-        });
-    }
-</script>
 
 @code {
     private MudTabs _tabs = null!;
