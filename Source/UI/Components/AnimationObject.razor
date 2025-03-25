@@ -1,0 +1,20 @@
+@namespace WebAnimEdit.Source.UI.Components
+@using Position = (double X, double Y)
+
+
+<div draggable="true" style="position: absolute; left: @(_position.X)px; top: @(_position.Y)px; border: solid;"
+    @ondragend="OnDragEnd">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+    Position _position = (0, 0);
+
+    void OnDragEnd(DragEventArgs e)
+    {
+        _position = (e.ClientX, e.ClientY);
+        Console.WriteLine(_position);
+    }
+}
