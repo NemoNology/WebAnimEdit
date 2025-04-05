@@ -2,7 +2,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAnimEdit", "WebAnimEdit.csproj", "{2A460961-FD28-1216-2CAB-80A65EBBA587}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAnimEdit", "WebAnimEdit\WebAnimEdit.csproj", "{2A460961-FD28-1216-2CAB-80A65EBBA587}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAnimEdit.Tests", "WebAnimEdit.Tests\WebAnimEdit.Tests.csproj", "{1AD8E004-B428-47F2-BA81-CB641C35B183}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,6 +16,10 @@ Global
 		{2A460961-FD28-1216-2CAB-80A65EBBA587}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A460961-FD28-1216-2CAB-80A65EBBA587}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A460961-FD28-1216-2CAB-80A65EBBA587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AD8E004-B428-47F2-BA81-CB641C35B183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AD8E004-B428-47F2-BA81-CB641C35B183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AD8E004-B428-47F2-BA81-CB641C35B183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AD8E004-B428-47F2-BA81-CB641C35B183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,17 @@
+@using System.ComponentModel.DataAnnotations
+@namespace WebAnimEdit.UI.Components
+
+@* <div draggable="true" style="position: absolute; left: @(Object.Position.X)px; top: @(Object.Position.Y)px;" *@
+@*      @ondragend="OnDragEnd"> *@
+@*     @ChildContent *@
+@* </div> *@
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    // [Parameter] public required WebAnimEdit.Models.MovableObject Object { get; init; }
+
+    void OnDragEnd(DragEventArgs e)
+    {
+        // Object.Position = (e.ClientX, e.ClientY);
+    }
+}
